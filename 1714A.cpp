@@ -18,15 +18,6 @@ int main(){
             }
             x=min(x,b-a);
         }
-        // while(n--){
-        //     int h,m; 
-        //     cin>>h>>m;
-        //     int b=h*60+m;
-        //     if(a>b){
-        //         b+=1440;
-        //     }
-        //     x=min(x,b-a);
-        // }
         cout<<x/60<<" "<<x%60<<endl;
     }
 
