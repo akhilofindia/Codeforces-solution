@@ -11,12 +11,12 @@ int main(){
         if(n>=4){ 
             if(n%2!=0){
                 cout<<-1<<endl;
-        }else{
-            max=n/4;
-            mini=0;
-            if(n%6==0){
-                mini=n/6;
             }else{
+                max=n/4;
+                mini=0;
+                if(n%6==0){
+                    mini=n/6;
+                }else{
                 mini=n/6+1;
             }
             cout<<mini<<" "<<max<<endl;
