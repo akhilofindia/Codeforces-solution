@@ -7,6 +7,7 @@ int main(){
 	reverse(b.begin(),b.end());
 	string c=a+b;
 	cout<<c<<endl;
+	
 
 	return 0;
 }
