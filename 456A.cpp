@@ -13,10 +13,10 @@ int main(){
     	    break;
 	    }
     }
-	if (count>0){
+	if (count){
     	cout<<"Happy Alex"<<endl; 
 	}else
-	cout<<"Poor Alex"<<endl;
+	    cout<<"Poor Alex"<<endl;
 	
 
 	return 0;
