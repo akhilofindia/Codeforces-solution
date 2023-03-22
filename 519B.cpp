@@ -20,7 +20,7 @@ int main(){
         cin>>m;
         c+=m;
     }
-    cout<< a-b <<endl<< b-c <<endl;
+    cout<< a-b <<endl << b-c <<endl;
 
 	return 0;
 }
