@@ -4,7 +4,7 @@ using namespace std;
 int main(){
 	long long n,a,b,c;
     cin>>a>>b>>c;
-    int count;
+    long long count;
     n=abs(a)+abs(b);
     if(n==c){
         count=1;
@@ -23,6 +23,5 @@ int main(){
     }else
         cout<<"No"<<endl;
     
-
 	return 0;
 }
