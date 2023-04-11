@@ -9,7 +9,8 @@ int main(){
         cin>>n>>a>>b;
         string s;
         cin>>s;
-        int ans=a*n; int count=0;
+        int ans=a*n; 
+        int count=0;
         if (b>0)
         {
         	ans+=b*n;
@@ -22,10 +23,6 @@ int main(){
             ans+=((count/2)+1)*b;
         }
         cout<<ans<<endl;
-     //    int ans2 = 0, count = 0;
-        
-     //    ans2=a*n+((count/2)+1)*b;
-	    // cout<<max(ans,ans2)<<endl;
     }
 	return 0;
 }
