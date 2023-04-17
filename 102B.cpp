@@ -13,7 +13,7 @@ int main(){
         s=to_string(ans);
         count++;
     }
-    cout << count << endl;
+    cout<<count<<endl;
 
 	return 0;
 }
