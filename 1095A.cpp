@@ -7,7 +7,7 @@ int main(){
     cin>>s;
     int sum=1;
     string a;
-    for(int i=0;i<n;i++){
+    for(int i = 0; i < n; i++){
         a+=s[i];
         i+=sum;
         sum++;
