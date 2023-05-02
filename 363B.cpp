@@ -10,7 +10,6 @@ int main(){
         cin>>a[i];
         b[i]=b[i-1]+a[i];
     }
-
     int min = INT_MAX;
     int ans = 0;
     for(int i = k; i <= n; i++)
