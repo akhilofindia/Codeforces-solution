@@ -12,7 +12,7 @@ int main(){
 			cin>>a[i];
 		}
 		sort(a.begin(),a.end());
-		int ans=0,b=0;
+		int ans=0,b=0;n
 		for(int i=0;i<=n;i++){
 	    	int count=0,count2=0;
             for (int j = 0; j < n; j++)
