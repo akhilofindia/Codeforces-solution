@@ -14,11 +14,11 @@ int main(){
 	if(count==1){
 		cout<<"YES"<<endl;
 	}
-	else {
+	else{
 		if(n%2==1 && count==0){
 			cout<<"YES"<<endl;
 		}
-		else {
+		else{
 			cout<<"NO"<<endl;
 		}
 	}
