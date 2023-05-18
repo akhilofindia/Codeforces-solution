@@ -4,7 +4,7 @@ using namespace std;
 int main(){
 	int tc; cin>>tc;
 	while(tc--){
-		int n;
+		long long int n;
         cin>>n;
         int a=n%14;
         if(a<7 && a!=0 && n>14){
