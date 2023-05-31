@@ -9,7 +9,7 @@ int main(){
     	string s; cin>>s ;
     	string t=s;
     	reverse (t.begin(),t.end());
-    	if (s == t || k == 0 ){
+    	if (s == t || k == 0){
     	    cout << 1 << endl ;
     	}
     	else{

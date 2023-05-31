@@ -17,6 +17,7 @@ int main(){
 			cout<<b[i]<<" ";
 		}
 		cout<<endl;
+		
 	}
 
 	return 0;
