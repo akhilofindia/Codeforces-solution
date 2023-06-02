@@ -11,7 +11,6 @@ int main(){
       		a=a/10;
       		count++;
    		}
-   		// cout<<count<<endl;
    		int ans =pow(10,count-1);
    		cout<<n-ans<<endl;
 	}

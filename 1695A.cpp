@@ -24,6 +24,23 @@ int main(){
 		h=max(a+1,n-a);
 		w=max(b+1,m-b);
 		cout<<h*w<<endl;
+		for (int i = 0; i < n; i++)
+    {
+        int x = arr[i]-1, y = m - arr[i];
+ 
+        if(x > y){
+            swap(x, y);
+        }
+ 
+        if(s[x] == 'B'){
+            s[x] = 'A';
+        }
+        else{
+            s[y] = 'A';
+        }
+    }
+    
+    cout << s << '\n';
 	}
 
 	return 0;
