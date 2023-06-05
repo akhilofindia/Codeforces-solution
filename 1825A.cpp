@@ -9,10 +9,10 @@ int main(){
     	int n=s.size();
     	if(s[0] == s[n-1])
     	{
-    	    cout <<-1<< endl;
+    	    cout<<-1<<endl;
     	}
     	else{ 
-    		cout << n-1 << endl;
+    		cout<<n-1<<endl;
     	}	
 	}
 
