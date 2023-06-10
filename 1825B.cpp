@@ -20,6 +20,7 @@ int main(){
 		int b=mx-my;
 		cout<<(a-min(n,m))*(mx-my)+(min(n,m)-1)*max(mx-myy,mxx-my)<<endl;
 	}
+	
 
 	return 0;
 }
