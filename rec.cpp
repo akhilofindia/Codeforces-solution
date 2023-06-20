@@ -26,42 +26,36 @@ void func(int sum,int count,vector <int> &ds,set<vector<int>> &st){
 	ds.pop_back();
 	return;
 }
-void numb(int sum,int count,vector <int> &ds,set<vector<int>> &st,int b){
-	int cnt=0; 
+
+void numb(int sum,int count,int &b,int len,int x,int y,int z)
+{
 	if (sum==count)
 	{
-		b=max(b,cnt);
-		return;
+		b=max(b,len);
+		return ;	
 	}
 	if (sum<count)
 	{
-		cnt=0;
 		return;
 	}
-	ds.push_back(24); 
-	cnt++;
-	func(sum,count+24,ds,st);
-	ds.pop_back();
-	cnt--;
-	ds.push_back(4);
-	cnt++; 
-	func(sum,count+4,ds,st);
-	ds.pop_back();
-	cnt--;
-	ds.push_back(3); 
-	cnt++;
-	func(sum,count+3,ds,st);
-	ds.pop_back();
-	cnt--;
+	len++;
+	numb(sum,count+x,b,len,x,y,z);
+	numb(sum,count+y,b,len,x,y,z);
+	numb(sum,count+z,b,len,x,y,z);
+	len--;
 	return;
-}
+}	
 
 int main(){
-	int sum=27;
-	int b=0;
+	int sum;
+	cin>>sum;
+	int x,y,z; cin>>x>>y>>z;
+	int b=INT_MIN;
+	int len=0;
 	set<vector<int>>st;
 	vector <int>ds; 
-	numb(sum,0,ds,st,b);      
+	// func(sum,0,ds,st);
+	numb(sum,0,b,len,x,y,z);    
 	cout<<b<<endl;
 	// for (auto it = st.begin(); it !=st.end(); ++it){
  //       for (int i = 0; i < (*it).size(); i++)
