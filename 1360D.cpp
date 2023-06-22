@@ -5,24 +5,26 @@ int main(){
 	int tc;cin>>tc;
 	while(tc--){
 		long long n,k;cin>>n>>k;
-		if (n==k)
+		if (n<=k)
 		{
 			cout<<1<<endl;
-		}else if (n<k)
-		{
-			cout<<1<<endl;
-		}else if(n%k==1){
-			cout<<n<<endl;
-		}
-		else{
-			for (int i = k; i > 0; i--)
+		}else{
+			long long ans=INT_MAX;
+			for (long long i = 1; i*i <= n; i++)
 			{
 				if (n%i==0)
 				{
-					cout<<n/i<<endl;
-					break;
+					if (k>=i)
+					{
+						ans=min(ans,n/i);
+					}
+					if (k>=n/i)
+					{
+						ans=min(ans,i);
+					}
 				}
 			}
+			cout<<ans<<endl;
 		}
 	}
 
