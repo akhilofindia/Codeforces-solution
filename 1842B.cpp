@@ -19,39 +19,36 @@ int main(){
 			cin>>c[i];
 		}
 		int m=0;
-		int q=0;
-		int o=0;
 		for (int i = 0; i < n; i++)
 		{
-			if (m|a[i]!=x)
+			if ((x|a[i])!=x)
 			{
 				break;
 			}
-			m=m|a[i];
+			m|=a[i];
 		}
 		for (int i = 0; i < n; i++)
 		{
-			if (q|b[i]!=x)
+			if ((x|b[i])!=x)
 			{
 				break;
 			}
-			q=q|b[i];
+			m|=b[i];
 		}		
 		for (int i = 0; i < n; i++)
 		{
-			if (o|c[i]!=x)
+			if ((x|c[i])!=x)
 			{
 				break;
 			}
-			o=o|c[i];
+			m|=c[i];
 		}
-		int p=m|q|o;
-		if (p==x)
+		if (m==x)
 		{
 			cout<<"Yes"<<endl;
-		}else{
+		}else
 			cout<<"No"<<endl;
-		}
+		
 	}
 
 	return 0;
