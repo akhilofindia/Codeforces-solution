@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-string s="YesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYes";
+// string s="YesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYes";
 int main(){
 	int tc; cin>>tc;
 	while(tc--){
@@ -14,6 +14,5 @@ int main(){
    			cout<<"YES"<<endl;
    		}
 	}
-
 	return 0;
 }
