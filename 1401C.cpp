@@ -4,24 +4,24 @@ using namespace std;
 int main(){
 	int tc;cin>>tc;
 	while(tc--){
-		int n; cin>>n;
-		char arr[n][n];
+		int n;cin>>n;
+		int arr[n],b[n];
+		int mn=INT_MAX;
 		for (int i = 0; i < n; i++)
 		{
-			for (int j = 0; j < n; j++)
-			{
-				cin>>arr[i][j];
-			}
+			cin>>arr[i];
+			b[i]=arr[i];
+			mn=min(mn,arr[i]);
 		}
-		int flag=0; 
-		for (int i = n-2; i >= 0; i--)
+		sort(b,b+n);
+		int flag=0;
+		for (int i = 0; i < n; i++)
 		{
-			for (int j = n-2; j >= 0; j--)
+			if (b[i]!=arr[i])
 			{
-				if (arr[i][j]=='1' && arr[i+1][j]=='0' && arr[i][j+1]=='0')
+				if (arr[i]%mn!=0)
 				{
 					flag=1;
-					break;
 				}
 			}
 		}
@@ -32,6 +32,7 @@ int main(){
 			cout<<"YES"<<endl;
 		}
 	}
+	
 
 	return 0;
 }
