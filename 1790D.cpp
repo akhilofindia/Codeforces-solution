@@ -6,28 +6,22 @@ int main(){
 	while(tc--){
 		int n;cin>>n;
 		int a[n];
+		map<int,int>mp;
+		set<int>st;
 		for (int i = 0; i < n; i++)
 		{
 			cin>>a[i];
+			mp[a[i]]++; 
+			st.insert(a[i]);
 		}
-		vector <int> v,v2;
-		sort(a,a+n);
-		int i=0;
-		while(i<=n){
-			if (a[i]+1==a[i+1])
+		for (int i = 0; i < mp.size(); i++)
+		{
+			if (st.count(a[i]))
 			{
-				v.push_back(a[i]);
-				v.push_back(a[i+1]);
-				i++;
-			}else{
-				v2.push_back(a[i]);
-				i++;
+				mp[a[i]]--;
 			}
 		}
-		for (int i = 0; i < v.size(); i++)
-		{
-			cout<<v[i]<<" ";
-		}
+		
 	}
 
 	return 0;
