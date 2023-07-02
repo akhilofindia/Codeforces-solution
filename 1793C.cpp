@@ -11,10 +11,10 @@ int main(){
 		{
 			cin>>a[i];
 		}
-		int l = 1;
-		int minn = 1;
-		int r = n;
-		int maxx = n;
+		int l=1;
+		int minn=1;
+		int r=n;
+		int maxx=n;
 		while (l < r) {
 			if (a[l] == minn) {
 				l++;
@@ -34,10 +34,10 @@ int main(){
 			}
 			else break;
 		}
-		if (l < r){
-			cout << l << ' ' << r << endl;
+		if (l<r){
+			cout <<l<<' '<<r<<endl;
 		}else{
-		    cout << -1 << endl;
+		    cout<<-1<<endl;
 		}
 
 	}
