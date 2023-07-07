@@ -28,3 +28,34 @@ int main(){
 
 	return 0;
 }
+// void printPermutations(string prefix, string remaining)
+// {
+//     if (prefix.length() == 4)
+//     {
+//         for (char c : "acsn")
+//         {
+//             cout << prefix << c << " ";
+//         }
+//         return;
+//     }
+
+//     for (int i = 0; i < remaining.length(); i++)
+//     {
+//         string newPrefix = prefix + remaining[i];
+//         string newRemaining = remaining.substr(0, i) + remaining.substr(i + 1);
+//         printPermutations(newPrefix, newRemaining);
+//     }
+// }
+
+// int main()
+// {
+//     string letters = "acsn";
+//     printPermutations("", letters);
+//     return 0;
+// }
+
+
+
+
+
+
