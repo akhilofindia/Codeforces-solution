@@ -4,31 +4,31 @@ using namespace std;
 int main(){
 	int tc;cin>>tc;
 	while(tc--){
-		double n,d,h;cin>>n>>d>>h;
-		vector <double>arr;
+		double n,d,h; cin>>n>>d>>h;
+		vector<double>arr;
 		for (int i = 0; i < n; i++)
 		{
-			double x; cin>>x;
+			double x;cin>>x;
 			arr.push_back(x);
 		}
-		sort(arr.begin(),arr.end());
-		double mx=0; 
-		double newbase=0;
-		double newarea;
+		double ogarea=n*0.5*d*h;
+		double narea=0.0;
 		for (int i = 1; i < n; i++)
 		{
 			double diff=arr[i]-arr[i-1];
-			if (diff<h )
+			if (diff<h)
 			{
-				newbase=((h-diff)/h)*d;
-                // cout<<newbase<<endl;
-				double newheight=diff;
-
-				newarea+=(1/2*newheight*newbase);
+				double newheight=h-diff;
+				// cout<<"nheight "<<newheight<<endl;
+				double ratio=newheight/h;
+				// cout<<"nratio "<<ratio<<endl;
+				double newbase=d*ratio;
+				// cout<<"nbase "<<newbase<<endl;
+				narea+=(0.5*newheight*newbase);
+				// cout<<"narea "<<narea<<endl;
 			}
 		}
-		double area=n*(1/2*d*h)-newarea;
-		cout<<setprecision(8)<<fixed<<area<<endl;
+		cout<<fixed<<setprecision(7)<<ogarea-narea<<endl;
 	}
 
 	return 0;
