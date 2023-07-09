@@ -5,7 +5,7 @@ void fillPrefixSum(long long arr[], long long n, long long prefixSum[])
 {
     prefixSum[0] = arr[0];
     for (int i = 1; i < n; i++){
-        prefixSum[i] = prefixSum[i - 1] + arr[i];
+        prefixSum[i] = prefixSum[i-1] + arr[i];
     }
 }
  
@@ -17,6 +17,11 @@ bool a(pair<long long,pair<long long,long long>> x, pair<long long,pair<long lon
 		if (x.second.second<y.second.second)
 		{
 			return true;
+		}else if(x.second.second==y.second.second){
+			if (x.first<y.first)
+			{
+				return true;
+			}
 		}
 	}
 	return false;
@@ -27,9 +32,9 @@ int main(){
 	while(tc--){
 		long long n,m,h; cin>>n>>m>>h;
 		vector<pair<long long,pair<long long,long long>>> v;
-		for(int j=0;j<n;j++){
+		for(long long j=0;j<n;j++){
 			long long arr[m];
-			for (int i = 0; i < m; i++)
+			for (long long i = 0; i < m; i++)
 			{
 				cin>>arr[i];
 			}
@@ -51,11 +56,11 @@ int main(){
 			v.push_back({j,{pt,pen}});
 		}
 		sort(v.begin(),v.end(),a);
-		// for (int i=0; i<v.size(); i++){
+		// for (long long i=0; i<v.size(); i++){
 	 //        cout << v[i].first << ", " << v[i].second.first
   //           << ", " << v[i].second.second << endl;
   //   	}
-		for (int i = 0; i < v.size(); i++)
+		for (long long i = 0; i < v.size(); i++)
 		{
 			if (v[i].first==0)
 			{
@@ -63,8 +68,6 @@ int main(){
 				break;
 			}
 		}
-    	// cout<<endl;
-
 
 	}
 
