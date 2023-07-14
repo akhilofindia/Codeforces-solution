@@ -35,8 +35,7 @@ int main(){
 	    else if(a>b){
 	        cout << "Alice"<<endl;
 	    }
-	    else
-	        cout << "Bob"<<endl;
+	    else  cout << "Bob"<<endl;
 	}
 	return 0;
 }
