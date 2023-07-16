@@ -9,27 +9,7 @@ int main(){
 		cout<<k+ans<<endl;
 	}
 
-	#include<bits/stdc++.h>
-using namespace std;
-int n, m, a, b;
-int main()
-{
-	cin >> n >> m >> a >> b;
-	int ans = 0;
-
-	if (a > b / m)
-	{
-		ans += (n / m) * b;
-		if ((n%m) * a > b)
-		{
-			ans += b;
-		}
-		else ans += a * (n % m);
-	}
-	else ans = n * a;
-	cout << ans << endl;
-
-}
+	
 	
 
 	return 0;
