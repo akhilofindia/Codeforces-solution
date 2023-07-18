@@ -10,7 +10,7 @@ int main(){
 		{
 			cin>>arr[i];
 		}
-		sort(arr,arr+ n, greater<int>());
+		sort(arr,arr+n, greater<int>());
 		int pref[n];
 		pref[0]=arr[0];
 		for (int i = 1; i < n; i++)
@@ -19,7 +19,7 @@ int main(){
 		}
 		for(int i=0;i<m;i++)
        	{
-        	int x;  cin >>x;
+        	int x; cin>>x;
 	        auto y=lower_bound(pref,pref+n,x);
 	        if(y!=pref+n)
     	    {
