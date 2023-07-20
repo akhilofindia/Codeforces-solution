@@ -2,24 +2,24 @@
 using namespace std;
 
 int dfs(int node,int par,vector<int>adj[],string s,vector<int>&white,vector<int>&black){
-    if(s[node-1]=='W'){
+    if(s[node-1]=='W'){                     //checking color of node
         white[node]++;
     }
     else{
         black[node]++;
     }
     int ans=0;
-    for (auto& u: adj[node])
+    for (auto& u: adj[node])                //transversing in graph
     {
-    	if (u==par)
+    	if (u==par)                        //if no adj element,no need to check
     	{
     		continue;
     	}
-    	ans+=dfs(u,node,adj,s,white,black);
-    	white[node]+=white[u];
-    	black[node]+=black[u];
+    	ans+=dfs(u,node,adj,s,white,black); //recursion to check all subtrees
+    	white[node]+=white[u];            //adding total white color in a tree
+    	black[node]+=black[u];            //adding total black color in a tree
     }
-    if (white[node]==black[node])
+    if (white[node]==black[node])         
     {
     	ans++;
     }
@@ -30,11 +30,11 @@ int main(){
 	while(tc--){
 		int n;
 		cin>>n;
-		vector<int>adj[n+1];
+		vector<int>adj[n+1];                  //adjacency list will contain connected nodes
 		for (int i = 2; i < n+1; i++)
 		{
 			int p; cin>>p;
-			adj[i].push_back(p);
+			adj[i].push_back(p);                //created adjacent list
 			adj[p].push_back(i);
 		}
 		string s;cin>>s;
