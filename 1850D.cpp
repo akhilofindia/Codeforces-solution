@@ -11,28 +11,22 @@ int main(){
 			cin>>arr[i];
 		}
 		sort(arr,arr+n);
-		vector<int>diff;
-		for (int i = 0; i < n-1; i++)
-		{
-			diff.push_back(arr[i+1]-arr[i]);
-		}
 		long long mx=0; 
-		int cnt=0;
-		for (int i = 0; i < diff.size(); i++)
+		vector<long long>v;
+		for (long long i = 0; i < n-1; i++)
 		{
-			if (diff[i]<=k)
+			if (arr[i+1]-arr[i]<=k)
 			{
-				cnt++;
-				if (cnt>mx)
-				{
-					mx=cnt;
-				}
+				mx++;
 			}else{
-				cnt=0;
+				v.push_back(mx+1);
+				mx=0;
+			}if(i==n-2){
+				v.push_back(mx+1);
 			}
 		}
-		cout<<n-mx-1<<endl;
-		
+		long long x=*max_element(v.begin(),v.end());
+		cout<<n-x<<endl;
 	}
 
 	return 0;
