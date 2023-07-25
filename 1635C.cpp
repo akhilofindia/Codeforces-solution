@@ -16,7 +16,6 @@ int main(){
 		}else if (arr[n-1]>arr[n] || arr[n]<0)
 		{
 			cout<<-1<<endl;
-			// continue;
 		}else{
 			cout<<n-2<<endl;
 			for (int i = 1; i <= n-2; i++)
