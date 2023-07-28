@@ -2,7 +2,7 @@
 using namespace std;
 
 int main(){
-	int tc;cin>>tc;
+	long long tc;cin>>tc;
 	while(tc--){
 		long long n,k; cin>>n>>k;
 		vector<long long>arr(n);
@@ -24,13 +24,14 @@ int main(){
 			{
 				cout<<it.second+1<<" ";
 			}else{
-				vi.push_back({it.first,it.second});
+				vi.push_back({it.first,-1*it.second});
 			}
 		}
 		sort(vi.begin(),vi.end());
+		reverse(vi.begin(),vi.end());
 		for (auto it:vi)
 		{
-			cout<<it.second+1<<" ";
+			cout<<-1*it.second+1<<" ";
 		}
 
 		cout<<endl;
