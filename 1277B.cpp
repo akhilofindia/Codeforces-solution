@@ -7,29 +7,18 @@ int main(){
 		int n;cin>>n;
 		int arr[n];
 		vector<int>even;
+		int cnt=0;
+		map<int,int>mp;
 		for (int i = 0; i < n; i++)
 		{
 			cin>>arr[i];
-			if (arr[i]%2==0)
-			{
-				even.push_back(arr[i]);
+			while(arr[i]%2==0 && mp[arr[i]]==0){
+				mp[arr[i]]=1;
+				cnt++;
+				arr[i]/=2;
 			}
 		}
-		int cnt=0;
-		sort(even.begin(),even.end());
-		for (int i = 0; i < even.size(); i++)
-		{
-			int k=*max_element(even.begin(),even.end());
-			if (even[i]==k)
-			{
-				even[i]/=2;
-			}
-			cnt++;
-			if (even[i]%2==1)
-			{
-				even[i]==0;
-			}
-		}
+		cout<<cnt<<endl;
 
 	}
 
