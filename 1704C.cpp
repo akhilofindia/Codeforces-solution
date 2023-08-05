@@ -11,7 +11,6 @@ int main(){
 			cin>>arr[i];
 		}
 		sort(arr,arr+m);
-		// reverse(arr,arr+m);
 		int diff[m];
 		for (int i = 0; i < m; i++)
 		{
@@ -19,7 +18,7 @@ int main(){
 			{
 				diff[i]=n-arr[i]+arr[0]-1;
 			}else{
-				diff[i]=arr[i-1]-arr[i]-1;
+				diff[i]=arr[i+1]-arr[i]-1;
 			}
 		}
 		sort(diff,diff+m);
