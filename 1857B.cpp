@@ -12,7 +12,8 @@ int main(){
 			if (s[i]>'4')
 			{
 				s[i+1]+=1;
-				for(int j = i; j >= 0; j--){
+				for(int j = i; j >= 0; j--)
+				{
 					s[j]='0';
 				}
 			}
