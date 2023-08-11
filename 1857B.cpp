@@ -7,15 +7,17 @@ int main(){
 		string s;cin>>s;
 		reverse(s.begin(),s.end());
 		s+='0';
+		int j=0;
 		for (int i = 0; i < s.size()-1; i++)
 		{
 			if (s[i]>'4')
 			{
 				s[i+1]+=1;
-				for(int j = i; j >= 0; j--)
+				for(int k=i;k>=j;k--)
 				{
-					s[j]='0';
+					s[k]='0';
 				}
+				j=i;
 			}
 		}
 		reverse(s.begin(),s.end());
