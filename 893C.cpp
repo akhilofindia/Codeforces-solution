@@ -3,8 +3,8 @@ using namespace std;
 
 int n,m, cost[100000], mn;
 long long ans = 0;
-bool vis[100000];
 vector<int> adj[100000];
+bool vis[100000];
 
 void dfs(int node){
 	if (!vis[node])
