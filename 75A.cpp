@@ -24,7 +24,9 @@ int main(){
             j.push_back(z[i]);
         }
     }
-    a=stoi(g),b= stoi(h),c= stoi(j);
+    a=stoi(g);
+    b= stoi(h);
+    c= stoi(j);
     if (a+b==c)
     {
     	cout<<"YES"<<endl;
