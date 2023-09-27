@@ -4,29 +4,27 @@ using namespace std;
 int main(){
 	int tc;cin>>tc;
 	while(tc--){
-		int n;cin>>n;
+		int n,k;cin>>n>>k;
 		int arr[n];
+		int flag=0;
 		for (int i = 0; i < n; i++)
 		{
 			cin>>arr[i];
 		}
-		int ans;
-		if (arr[0]==1)
+		for (int i = 0; i < n; i++)
 		{
-			ans=2;
-		}else{
-			ans=1;
-		}
-		for (int i = 1; i < n; i++)
-		{
-			ans++;
-			if (arr[i]==ans)
+			if (arr[i]==k)
 			{
-				ans++;
+				flag=1;
+				break;
 			}
 		}
-		cout<<ans<<endl;
-
+		if (flag)
+		{
+			cout<<"YES"<<endl;
+		}else{
+			cout<<"NO"<<endl;
+		}
 	}
 
 	return 0;
