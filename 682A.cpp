@@ -2,9 +2,9 @@
 using namespace std;
 
 int main(){
-	int a,b;cin>>a>>b;
-	int sum=0;
-	for (int i = 1; i <= a; i++)
+	long long a,b;cin>>a>>b;
+	long long sum=0;
+	for (long long i = 1; i <= a; i++)
 	{
 		sum+=(b+(i%5))/5;
 	}
