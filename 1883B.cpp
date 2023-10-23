@@ -21,7 +21,6 @@ int main(){
 			{
 				cnt+=x.second%2;
 			}
-			
 			if (k<cnt-1)
 			{
 				flag=0;
