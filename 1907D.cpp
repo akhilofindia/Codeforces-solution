@@ -11,7 +11,7 @@ bool f(int k,vector<pair<int,int>>&v){            //check hoga if k enough h ya 
 		{
 			return false;
 		}
-	}0
+	}
 	return true;
 }
 int main(){
