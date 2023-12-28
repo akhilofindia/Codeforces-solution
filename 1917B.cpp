@@ -9,16 +9,24 @@ using namespace std;
 template<typename T1, typename T2>void displayMap(map<T1,T2>mp){for(auto it : mp){cout<<it.first<<"->"<<it.second<<endl;}cout<<endl;}
 
 int main(){
-    int n,m ; cin>>n>>m;
-    for (int i = 0; i < n; i++)
-    {
-        if ((m+(i%m))%2==1)
-        {
-            cout<<(m+i%m+1)/2<<endl;
-        }else{
-            cout<<(m-i%m)/2<<endl;
-        }
-    }
+	int tc;cin>>tc;
+	while(tc--){
+		int n; cin>>n;
+		string s; cin>>s;
+		set<char>st;
+		int arr[n];
+		for (int i = 0; i < n; i++)
+		{
+			st.insert(s[i]);
+			arr[i]=st.size();
+		}
+		int sum=0;
+		for (int i = 0; i < n; i++)
+		{
+			sum+=arr[i];
+		}
+		cout<<sum<<endl;
+	}
 
-    return 0;
+	return 0;
 }
