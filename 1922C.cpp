@@ -17,7 +17,7 @@ int main(){
 		{
 			cin>>arr[i];
 		}
-		int pre[n+1],suf[n+1];
+		int pre[n+1],suf[n+1];               //storing cost to reach that city
 		pre[1]=0;
 		pre[2]=1;
 		for (int i = 2; i <= n; i++)
