@@ -1,66 +1,18 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-#define ll long long
-#define cy cout<<"YES"<<endl
-#define cn cout<<"NO"<<endl
-#define disp(a,x) for(auto x:a)cout<<x<<" ";
-
-template<typename T1, typename T2>void displayMap(map<T1,T2>mp){for(auto it : mp){cout<<it.first<<"->"<<it.second<<endl;}cout<<endl;}
-
-int main(){
-    int n,k ; cin>>n>>k;
-    string s; cin>>s;
-    int x=0,o=0,dot=0;
-    int ans=INT_MAX;
-    for (int i = 0; i < n; i++)
-    {
-        int start=0,end=0;
-        while(end<k){
-            if (s[end]=='x')
-            {
-                x++;
-            }else if (s[end]=='.')
-            {
-                dot++;
-            }else o++;
-            end++;
-        }                         //end-start=k now
-        if (x==0)
+class Solution {
+public:
+    vector<long long> countOfPairs(long long n, long long x, long long y) {
+        vector<long long>final;
+        map<long long,long long>mp;
+        for(long long i=1;i<=n;i++){
+            for(long long j=i+1;j<=n;j++){
+                long long dist=min({abs(i-j),abs(i-x)+abs(y-j)+1,abs(i-y)+abs(x-j)+1});
+                mp[dist]++;
+            }
+        }
+        for (long long i = 1; i <= n; i++)
         {
-            ans=min(ans,dot);
-        }
-        while(n>end){
-            if (s[start]=='o')
-            {
-                o--;
-            }else if (s[start]=='x')
-            {
-                x--;
-            }else{
-                dot--;
-            }
-
-            start++;
-
-            if (s[end]=='o')
-            {
-                o++;    
-            }else if (s[end]=='x')
-            {
-                x++;
-            }else dot++;
-
-            end++;
-
-            if (x==0)   //if no x in current window
-            {
-                ans=min(ans,dot);
-            }
-            // cout<<start<<" "<<end<<endl;
-        }
+            final.push_back(2*mp[i]);
+        }   
+        return final;
     }
-   cout<<ans<<endl;
-
-    return 0;
-}
+};
