@@ -9,20 +9,30 @@ using namespace std;
 template<typename T1, typename T2>void displayMap(map<T1,T2>mp){for(auto it : mp){cout<<it.first<<"->"<<it.second<<endl;}cout<<endl;}
 
 int main(){
-	int tc; cin>>tc;
+	int tc;cin>>tc;
 	while(tc--){
-		string s; cin>>s;
-		map<char,int>mp;
-		for (int i = 0; i < s.size(); i++)
+		int n; cin>>n;
+		int arr[n];
+		for (int i = 0; i < n; i++)
 		{
-			mp[s[i]]++;
+			cin>>arr[i];
 		}
-		if (mp['A']+mp['C']==mp['B'])
+		deque<int>q;
+		q.push_back(arr[0]);
+		for (int i = 1; i < n; i++)
 		{
-			cy;
-		}else{
-			cn;
+			if (q.front()<arr[i])
+			{
+				q.push_back(arr[i]);
+			}else{
+				q.push_front(arr[i]);
+			}
 		}
+		for (auto i: q)
+		{
+			cout<<i<<" ";
+		}
+		cout<<endl;
 	}
 
 	return 0;
