@@ -1,18 +1,19 @@
-class Solution {
-public:
-    vector<long long> countOfPairs(long long n, long long x, long long y) {
-        vector<long long>final;
-        map<long long,long long>mp;
-        for(long long i=1;i<=n;i++){
-            for(long long j=i+1;j<=n;j++){
-                long long dist=min({abs(i-j),abs(i-x)+abs(y-j)+1,abs(i-y)+abs(x-j)+1});
-                mp[dist]++;
-            }
-        }
-        for (long long i = 1; i <= n; i++)
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+int main(){
+    int tc;cin>>tc;
+    while(tc--){
+        int n,k; cin>>n>>k;
+        string s="abcdefghijklmnopqrstuvwxyz";
+        string ss="";
+        for (int i = 0; i < n*k; i++)
         {
-            final.push_back(2*mp[i]);
-        }   
-        return final;
+            ss+=s[i%k];
+        }
+        cout<<ss<<endl;
     }
-};
+
+    return 0;
+}
