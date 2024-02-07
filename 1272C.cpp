@@ -9,15 +9,29 @@ using namespace std;
 template<typename T1, typename T2>void displayMap(map<T1,T2>mp){for(auto it : mp){cout<<it.first<<"->"<<it.second<<endl;}cout<<endl;}
 
 int main(){
-	int h,w,n; cin>>h>>w>>n;
-	char arr[h][w];
-	for (int i = 0; i < h; i++)
+	ll n,k; cin>>n>>k;
+	string s; cin>>s;
+	char arr[k];
+	map<char,ll>mp;
+	for (ll i = 0; i < k; i++)
 	{
-		for (int j = 0; j < w; j++)
+		cin>>arr[i];
+		mp[arr[i]]=1;
+	}
+	ll cnt=0;
+	ll ans=0;
+	for (ll i = 0; i < n; i++)
+	{
+		if (mp[s[i]])
 		{
-			arr[i][j]='.';
+			cnt++;
+		}else{
+			ans+=(cnt*(cnt+1))/2;
+			cnt=0;
 		}
 	}
+	ans+=(cnt*(cnt+1))/2;
+	cout<<ans<<endl;
 
 	return 0;
 }

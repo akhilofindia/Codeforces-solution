@@ -8,17 +8,13 @@ using namespace std;
 
 template<typename T1, typename T2>void displayMap(map<T1,T2>mp){for(auto it : mp){cout<<it.first<<"->"<<it.second<<endl;}cout<<endl;}
 
-int main() {
-    int tc ; cin>>tc;
-    while (tc--) {
-        int n, k, m;
-        cin >> n >> k >> m;
-        string s; cin >> s;
-        vector<int> v(k, 0);
-        int cnt = 0;
-        string ss = "";
-        2
-    }
+int main(){
+	int tc;cin>>tc;
+	while(tc--){
+		long long n,k;cin>>n>>k;
+		long long cnt=k/2;
+		cout<<n*cnt<<endl;
+	}
 
-    return 0;
+	return 0;
 }
