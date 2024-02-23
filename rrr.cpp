@@ -1,0 +1,1 @@
+Let s1 be the sum of elements in l to r and s2 be the number of 1’s in l to r . Answer is no if l==r or s2 > s1-(r-l+1) yes otherwise
