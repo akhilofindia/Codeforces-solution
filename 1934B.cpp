@@ -24,7 +24,7 @@ int main(){
 			ans=cnt;
 		}
 		// cout<<ans<<endl;
-		cout<<ok<<endl;
+		// cout<<ok<<endl;
 		for (ll i = 0; i < 3; i++)
 		{
 			ok-=5;

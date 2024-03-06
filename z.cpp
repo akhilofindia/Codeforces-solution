@@ -1,50 +1,81 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define int long long int
-#define vi vector<int>
-#define read(a) for(auto &i: a) cin >> i
+#define int long long
+#define endl "\n"
 #define mod 1000000007
 
-int solve(int n) {
-    vector<int> v={-1,1,2,1,2,3,1,2,3,2,1,2,2,2,3,1};
-    int mul = n / 15;
-    int behind = mul * 15;
-    int ans = INT_MAX;
-    int rem = n - behind;
-
-    if (rem == 0) {
-        ans = mul;
-    } else {
-        ans = min(ans, v[rem] + mul);
-    }
-
-    for (int i = 0; i < 3; i++) {
-        behind = behind - 5;
-        rem = n - behind;
-
-        if (rem <= 15 and behind >= 0) {
-            ans = min(ans, v[rem] + mul);
-        } else {
-            break;
-        }
-    }
-
-    return ans;
-}
-
-signed main() {
+int32_t main()
+{
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int t = 1;
+    int t;
     cin >> t;
-    while (t--) {
+
+    while (t--)
+    {
         int n;
         cin >> n;
 
-        int result = solve(n);
-        cout << result << endl;
+        vector<int> a(n);
+        unordered_map<int, int> m;
+
+        for (int i = 0; i < n; i++)
+        {
+            cin >> a[i];
+            m[a[i]]++;
+        }
+
+        set<int> s, ss;
+
+        for (int j = 0; m[j] >= 2; j++)
+        {
+            s.insert(j);
+            ss.insert(j);
+        }
+
+        if (m[j] > 0)
+        {
+            cout << -1 << endl;
+        }
+        else
+        {
+            int r = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                if (s.find(a[i]) != s.end())
+                {
+                    s.erase(a[i]);
+                }
+
+                if (s.size() == 0)
+                {
+                    r = i + 1;
+                    break;
+                }
+            }
+
+            for (int i = r; i < n; i++)
+            {
+                if (ss.find(a[i]) != ss.end())
+                {
+                    ss.erase(a[i]);
+                }
+            }
+
+            if (ss.size() == 0)
+            {
+                cout << 2 << endl;
+                cout << 1 << " " << r << endl;
+                cout << r + 1 << " " << n << endl;
+            }
+            else
+            {
+                cout << -1 << endl;
+            }
+        }
     }
 
     return 0;
