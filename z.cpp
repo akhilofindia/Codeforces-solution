@@ -1,81 +1,69 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define int long long
-#define endl "\n"
-#define mod 1000000007
+#define ll long long
+#define cy cout << "YES" << endl
+#define cn cout << "NO" << endl
+#define disp(a, x) for (auto x : a) cout << x << " ";
 
-int32_t main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+template<typename T1, typename T2>
+void displayMap(map<T1, T2> mp) {
+    for (auto it : mp) {
+        cout << it.first << "->" << it.second << endl;
+    }
+    cout << endl;
+}
 
+int main() {
     int t;
     cin >> t;
-
-    while (t--)
-    {
-        int n;
-        cin >> n;
-
-        vector<int> a(n);
-        unordered_map<int, int> m;
-
-        for (int i = 0; i < n; i++)
-        {
-            cin >> a[i];
-            m[a[i]]++;
-        }
-
-        set<int> s, ss;
-
-        for (int j = 0; m[j] >= 2; j++)
-        {
-            s.insert(j);
-            ss.insert(j);
-        }
-
-        if (m[j] > 0)
-        {
-            cout << -1 << endl;
-        }
-        else
-        {
-            int r = 0;
-
-            for (int i = 0; i < n; i++)
-            {
-                if (s.find(a[i]) != s.end())
-                {
-                    s.erase(a[i]);
+    while (t--) {
+        int n, m, x;
+        cin >> n >> m >> x;
+        set<int> st;
+        st.insert(x);
+        for (int i = 0; i < m; i++) {
+            int dis;
+            char s;
+            cin >> dis >> s;
+            set<int> temp;
+            if (s == '0') {
+                for (auto pos : st) {
+                    int clock = (pos + dis) % n;
+                    if (clock == 0) {
+                        clock = n;
+                    }
+                    temp.insert(clock);
                 }
-
-                if (s.size() == 0)
-                {
-                    r = i + 1;
-                    break;
+            } else if(s=='1') {
+                for (auto pos : st) {
+                    int counter = (pos + (n - dis)) % n;
+                    if (counter == 0) {
+                        counter = n;
+                    }
+                    temp.insert(counter);
+                }
+            }else{
+                for (auto pos : st) {
+                    int clock = (pos + dis) % n;
+                    if (clock == 0) {
+                        clock = n;
+                    }
+                    int counter = (pos + (n - dis)) % n;
+                    if (counter == 0) {
+                        counter = n;
+                    }
+                    temp.insert(clock);
+                    temp.insert(counter);
                 }
             }
-
-            for (int i = r; i < n; i++)
-            {
-                if (ss.find(a[i]) != ss.end())
-                {
-                    ss.erase(a[i]);
-                }
-            }
-
-            if (ss.size() == 0)
-            {
-                cout << 2 << endl;
-                cout << 1 << " " << r << endl;
-                cout << r + 1 << " " << n << endl;
-            }
-            else
-            {
-                cout << -1 << endl;
-            }
+            st = temp;
         }
+        cout << st.size() << endl;
+        for (auto x : st) {
+            cout << x << " ";
+        }
+        cout << endl;
     }
 
     return 0;
