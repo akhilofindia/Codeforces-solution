@@ -1,41 +1,40 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
 using namespace std;
 
-int main(){
-	int tc;cin>>tc;
-	while(tc--){
-		int n,a,q; cin>>n>>a>>q;
-		char arr[q];
-		int online=0,cnt=0;
-		for (int i = 0; i < q; i++)
-		{
-			cin>>arr[i];
-		}
-		int flag=0;
-		for (int i = 0; i < q; i++)
-		{
-			if (arr[i]=='-')
-			{
-				online--;
-			}else{
-				online++;
-				cnt++;
-			}
-			if (online+a==n)
-			{
-				flag=1;
-			}
-		}
-		if (flag==1 || n==a)
-		{
-			cout<<"YES"<<endl;
-		}else if (cnt+a>=n)
-		{
-			cout<<"MAYBE"<<endl;
-		}else{
-			cout<<"NO"<<endl;
-		}
-	}
+int longestDividingSubsequence(vector<int>& sequence) {
+    int n = sequence.size();
+    vector<int> best(n, 1);
 
-	return 0;
+    for (int i = 1; i < n; ++i) {
+        for (int j = 0; j < i; ++j) {
+            if (sequence[i] % sequence[j] == 0) {
+                best[i] = max(best[i], best[j] + 1);
+            }
+        }
+    }
+
+    int max_length = 0;
+    for (int i = 0; i < n; ++i) {
+        max_length = max(max_length, best[i]);
+    }
+
+    return max_length;
+}
+
+int main() {
+    int N;
+    cin >> N;
+
+    vector<int> sequence(N);
+    for (int i = 0; i < N; ++i) {
+        cin >> sequence[i];
+    }
+
+    int result = longestDividingSubsequence(sequence);
+    cout << result << endl;
+
+    return 0;
 }

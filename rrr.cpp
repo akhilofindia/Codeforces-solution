@@ -1,33 +1,68 @@
-#include <bits/stdc++.h>
+
+#include<bits/stdc++.h>
+
 using namespace std;
 
-int main(){
+#define int long long
 
-    //RA2211003010018
-    //AKHIL RAJ
-    //explanation in comments
-
-    int n; cin>>n;    //number of inputs
-    double w=0;       
-    double bias=1;
-    double yin=0;
-    while(n--){
-        double x;cin>>x;
-        yin+=w*x+bias;   //calculating yin
-        bias+=yin;   //updating bias
-        w+=x;    //new weight=old weight(w)+x*y(y=1) so i only added x
-        // cout<<yin<<endl;
-    }
-    int y;
-    if (yin>=1)      //activation function
+signed main()
+{
+    int t;
+    cin>>t;
+    while(t--)
     {
-        y=1;
-    }else{
-        y=0;
+        int n;
+        cin>>n;
+        string s[2];
+        cin>>s[0]>>s[1];
+
+        int dp[2][n];
+
+        dp[0][n-1]=0;
+        dp[1][n-1]=1;
+        dp[1][n-2]=0;
+        if(s[1][n-2]=='>')
+        {
+            dp[0][n-2]=1;
+        }
+        else
+        {
+            dp[0][n-2]=0;
+        }
+        for(int i=n-3;i>=0;i--)
+        {
+            //upar wala
+            dp[0][i]=0;
+            if(s[0][i+1]=='>' && dp[0][i+2]==1)
+            {
+                dp[0][i]=1;
+            }
+            if(s[1][i]=='>' && dp[1][i+1]==1)
+            {
+                dp[0][i]=1;
+            }
+
+            //neeche wala
+            dp[1][i]=0;
+            if(s[1][i+1]=='>' && dp[1][i+2]==1)
+            {
+                dp[1][i]=1;
+            }
+            if(s[0][i]=='>' && dp[0][i+1]==1)
+            {
+                dp[1][i]=1;
+            }
+        }
+       
+        if(dp[0][0]==1)
+        {
+            cout<<"YES";
+        }
+        else
+        {
+            cout<<"NO";
+        }
+        cout<<endl;
+        
     }
-    cout<<y<<endl;
-
-    return 0;
 }
-
-
