@@ -11,32 +11,31 @@ template<typename T1, typename T2>void displayMap(map<T1,T2>mp){for(auto it : mp
 int main(){
 	int tc;cin>>tc;
 	while(tc--){
-		int n,m;cin>>n>>m;
-		int a[n],b[n];
-		for (int i = 0; i < n; i++)
-		{
-			cin>>a[i];
-		}
-		for (int i = 0; i < n; i++)
-		{
-			cin>>b[i];
-		}
-		int c[m];
-		for (int i = 0; i < m; i++)
-		{
-			cin>>c[i];
-		}
-		map<int,int>mp;
-		for (int i = 0; i < m; i++)
-		{
-			bool flag=false;
-			for (int i = 0; i < count; ++i)
+		int n;cin>>n;
+		string s; cin>>s;
+		int low=0;
+		int high=n-1;
+		string ans;
+		int flag=0;
+		while(low<=high){
+			int mid=(low+high)/2;
+			string ss=s.substr(low,mid-low);
+			string ss2=s.substr(mid,high-mid);
+			if (ss==ss2)
 			{
-				/* code */
+				ans=ss;
+				flag=1;
+				break;
+			}else{
+				low=mid+1;
 			}
 		}
-
-		vector<int>v;
+		if (flag)
+		{
+			cout<<ans.size()<<endl;
+		}else{
+			cout<<n<<endl;
+		}
 	}
 
 	return 0;

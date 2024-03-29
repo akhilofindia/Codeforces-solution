@@ -11,32 +11,32 @@ template<typename T1, typename T2>void displayMap(map<T1,T2>mp){for(auto it : mp
 int main(){
 	int tc;cin>>tc;
 	while(tc--){
-		int n,m;cin>>n>>m;
-		int a[n],b[n];
-		for (int i = 0; i < n; i++)
+		string s; cin>>s;
+		int hours=stoi(s.substr(0,2));
+		int min=stoi(s.substr(3,2));
+		string p;
+		if (hours>=12)
 		{
-			cin>>a[i];
-		}
-		for (int i = 0; i < n; i++)
+			p="PM";
+		}else p="AM";
+		if (hours==0)
 		{
-			cin>>b[i];
-		}
-		int c[m];
-		for (int i = 0; i < m; i++)
+			hours=12;
+		}else if (hours>12)
 		{
-			cin>>c[i];
+			hours-=12;
 		}
-		map<int,int>mp;
-		for (int i = 0; i < m; i++)
+		string final=to_string(hours)+":"+to_string(min)+" "+p;
+		if (hours<10)
 		{
-			bool flag=false;
-			for (int i = 0; i < count; ++i)
-			{
-				/* code */
-			}
+			final="0"+final;
 		}
+		if (min<10)
+		{
+			final.insert(3,"0");
+		}
+		cout<<final<<endl;
 
-		vector<int>v;
 	}
 
 	return 0;
