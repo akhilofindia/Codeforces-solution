@@ -1,49 +1,49 @@
-#include <iostream>
-#include <vector>
-#include <unordered_map>
-#include <algorithm>
-#include <limits>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+#define ll long long
+#define cy cout<<"YES"<<endl
+#define cn cout<<"NO"<<endl
+#define disp(a,x) for(auto x:a)cout<<x<<" ";
 
-    long long n, k;
-    cin >> n >> k;
-    long long arr[n];
-    for (long long i = 0; i < n; i++) {
-        cin >> arr[i];
-    }
+template<typename T1, typename T2>void displayMap(map<T1,T2>mp){for(auto it : mp){cout<<it.first<<"->"<<it.second<<endl;}cout<<endl;}
 
-    unordered_map<long long, long long> mp; // Map to store indices of elements
-    long long mn = n + 1;
-    long long left = 0;
-
-    for (long long right = 0; right < n; right++) {
-        mp[arr[right]] = right;
-
-        // If the size of the window exceeds k, adjust the left pointer
-        if (right - left + 1 > k) {
-            // Remove the leftmost element from the map
-            mp.erase(arr[left]);
-            left++; // Move the left pointer to the right
-        }
-
-        // If the size of the window becomes k, update the minimum difference
-        if (right - left + 1 == k) {
-            auto it = mp.end(); 
-            auto it2 = mp.begin();
-            // Check if the element at it2 is still in the window
-            if (it2->second < left) {
-                it2++;
+int shortest(vector<vector<int>>& adj, int x, int y) {
+    vector<int> dist(adj.size(), -1);
+    queue<int> q;
+    q.push(x);
+    dist[x] = 0;
+    while (!q.empty()) {
+        int node = q.front();
+        q.pop();
+        for (int i : adj[node]) {
+            if (dist[i] == -1) {
+                dist[i] = dist[node]+1;
+                q.push(i);
+                if (i == y){
+                    return dist[i];
+                }
             }
-            mn = min(mn, it->second - it2->second + 1); // Update the minimum difference
         }
     }
+    return -1;
+}
 
-    cout << mn << endl;
+int main(){
+    int tc;cin>>tc;
+    while(tc--){
+        int n;cin>>n;
+        int x,y; cin>>x>>y;
+        vector<vector<int>>adj(n+1);
+        for (int i = 0; i < n-1; i++)
+        {
+            int a,b; cin>>a>>b;
+            adj[a].push_back(b);
+            adj[b].push_back(a);
+        }
+        int dist=shortest(adj,x,y);
+        cout<<dist<<endl;
+    }
 
     return 0;
 }
