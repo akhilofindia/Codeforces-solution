@@ -8,42 +8,43 @@ using namespace std;
 
 template<typename T1, typename T2>void displayMap(map<T1,T2>mp){for(auto it : mp){cout<<it.first<<"->"<<it.second<<endl;}cout<<endl;}
 
-int shortest(vector<vector<int>>& adj, int x, int y) {
-    vector<int> dist(adj.size(), -1);
-    queue<int> q;
-    q.push(x);
-    dist[x] = 0;
-    while (!q.empty()) {
-        int node = q.front();
-        q.pop();
-        for (int i : adj[node]) {
-            if (dist[i] == -1) {
-                dist[i] = dist[node]+1;
-                q.push(i);
-                if (i == y){
-                    return dist[i];
+    string clearStars(const string &s) {
+        map<char,stack<int>> mp;
+        vector<int> v;
+        string ss;
+        for (int ind = 0; ind < s.length(); ++ind) {
+            char c = s[ind];
+            if (c == '*'){
+                for (char i = 'a'; i <= 'z'; ++i) {
+                    if (mp.count(i) && !mp[i].empty()) {
+                        v.push_back(mp[i].top());
+                        mp[i].pop();
+                        break;
+                    }
                 }
+                v.push_back(ind);
+            } else {
+                mp[c].push(ind);
             }
         }
+        sort(v.begin(), v.end());
+        int i = 0, j = 0;
+        while (j < s.length()) {
+            if (i < v.size() && v[i] == j) {
+                i++;
+            } else {
+                ss+=s[j];
+            }
+            j++;
+        }
+        return ss;
     }
-    return -1;
-}
+
 
 int main(){
-    int tc;cin>>tc;
-    while(tc--){
-        int n;cin>>n;
-        int x,y; cin>>x>>y;
-        vector<vector<int>>adj(n+1);
-        for (int i = 0; i < n-1; i++)
-        {
-            int a,b; cin>>a>>b;
-            adj[a].push_back(b);
-            adj[b].push_back(a);
-        }
-        int dist=shortest(adj,x,y);
-        cout<<dist<<endl;
-    }
+    string s;cin>>s;
+    string ans=clearStars(s);
+    cout<<ans<<endl;
 
     return 0;
 }

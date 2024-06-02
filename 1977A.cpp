@@ -9,16 +9,19 @@ using namespace std;
 template<typename T1, typename T2>void displayMap(map<T1,T2>mp){for(auto it : mp){cout<<it.first<<"->"<<it.second<<endl;}cout<<endl;}
 
 int main(){
-    int n;cin>>n;
-    int cnt=0;
-    for (int i = 0; i < 32; i++)
-    {
-        if (n&(1<<i))
-        {
-            cnt++;
-        }
-    }
-    cout<<cnt<<endl;
+	int tc;cin>>tc;
+	while(tc--){
+		ll x,y; cin>>x>>y;
+		if (x<y)
+		{
+			cn;
+		}else{
+			if ((x-y)%2==0)
+			{
+				cy;
+			}else cn;
+		}
+	}
 
-    return 0;
+	return 0;
 }
