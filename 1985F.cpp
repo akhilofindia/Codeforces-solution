@@ -14,29 +14,55 @@ template<typename T>void displaySet(set<T>st){for(auto it:st){cout<<it<<" ";}cou
 template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.front()<<" ";q.pop();}cout<<endl;}
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
-int main(){
-    int tc;cin>>tc;
-    while(tc--){
-        ll n;cin>>n;
-        ll arr[n];
-        for (ll i = 0; i < n; i++)
-        {
-            cin>>arr[i];
-        }
-        ll sum=0;
-        ll cnt=0;
-        ll mx=INT_MIN;
-        for (ll i = 0; i < n; i++)
-        {
-            mx=max(mx,arr[i]);
-            sum+=arr[i];
-            if (sum/2==mx && sum%2==0)
-            {
-                cnt++;
-            }
-        }
-        cout<<cnt<<endl;
-    }
+bool f(vector<ll>&arr,vector<ll>&arr2,ll ok,ll &health){
+	ll cnt=0;
+	for (int i = 0; i < arr.size(); i++)
+	{
+		ll wow=arr[i]*((ok/arr2[i])+1);        //ok moves m kitna damage
+		cnt+=wow;
+		if (cnt>=health)
+		{
+			return true;
+		}
+	}
+	if (cnt>=health)
+	{
+		return true;
+	}else return false;
+}
 
-    return 0;
+int main(){
+	int tc;cin>>tc;
+	while(tc--){
+		ll h,n;cin>>h>>n;
+		ll health=h;
+		vector<ll>arr(n),arr2(n);
+		for (ll i = 0; i < n; i++)
+		{
+			cin>>arr[i];
+		}
+		for (ll i = 0; i < n; i++)
+		{
+			cin>>arr2[i];
+		}
+		ll l=0;
+		ll hi=1e12;
+		while(hi-l>1){
+			ll mid=l+(hi-l)/2;
+			if (f(arr,arr2,mid,health))
+			{
+				hi=mid;
+			}else{
+				l=mid;
+			}
+		}
+		if (!f(arr,arr2,l,health))
+		{
+			cout<<hi+1<<endl;
+		}else{
+			cout<<l+1<<endl;
+		}
+	}
+
+	return 0;
 }

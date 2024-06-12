@@ -15,28 +15,16 @@ template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.fron
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
 int main(){
-    int tc;cin>>tc;
-    while(tc--){
-        ll n;cin>>n;
-        ll arr[n];
-        for (ll i = 0; i < n; i++)
-        {
-            cin>>arr[i];
-        }
-        ll sum=0;
-        ll cnt=0;
-        ll mx=INT_MIN;
-        for (ll i = 0; i < n; i++)
-        {
-            mx=max(mx,arr[i]);
-            sum+=arr[i];
-            if (sum/2==mx && sum%2==0)
-            {
-                cnt++;
-            }
-        }
-        cout<<cnt<<endl;
-    }
+	int tc;cin>>tc;
+	while(tc--){
+		string a,b;
+		cin>>a>>b;
+		char c=b[0];
+		char d=a[0];
+		a[0]=c;
+		b[0]=d;
+		cout<<a<<" "<<b<<endl;
+	}
 
-    return 0;
+	return 0;
 }

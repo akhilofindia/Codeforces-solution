@@ -15,28 +15,59 @@ template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.fron
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
 int main(){
-    int tc;cin>>tc;
-    while(tc--){
-        ll n;cin>>n;
-        ll arr[n];
-        for (ll i = 0; i < n; i++)
-        {
-            cin>>arr[i];
-        }
-        ll sum=0;
-        ll cnt=0;
-        ll mx=INT_MIN;
-        for (ll i = 0; i < n; i++)
-        {
-            mx=max(mx,arr[i]);
-            sum+=arr[i];
-            if (sum/2==mx && sum%2==0)
-            {
-                cnt++;
-            }
-        }
-        cout<<cnt<<endl;
-    }
+	int tc;cin>>tc;
+	while(tc--){
+		int n;cin>>n;
+		int l,r;  
+		int arr[n+1];
+		for (int i = 1; i <= n; i++)
+		{
+			cin>>arr[i];
+		}
+		for (int i = 1; i <= n; i++)
+		{
+			if (arr[i]==n)
+			{
+				r=i;
+			}
+		}
+		if (r==1)
+		{
+			for (int i = 1; i <= n; i++)
+			{
+				if (arr[i]==n-1)
+				{
+					r=i;
+				}
+			}
+		}
+		if (r!=n)
+		{
+			r--;
+		}
+		l=r;
+		for (int i=r-1;i>=1;i--)
+		{
+			if (arr[i]>arr[1])
+			{
+				l--;
+			}else break;
+		}
+		for (int i = r+1; i <=n ; i++)
+		{
+			cout<<arr[i]<<" ";
+		}
+		for (int i=r;i>=l;i--)
+		{
+			cout<<arr[i]<<" ";
+		}
+		for (int i = 1; i < l; i++)
+		{
+			cout<<arr[i]<<" ";
+		}
+		cout<<endl;
 
-    return 0;
+	}
+
+	return 0;
 }

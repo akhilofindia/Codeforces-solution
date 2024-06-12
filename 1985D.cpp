@@ -15,28 +15,36 @@ template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.fron
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
 int main(){
-    int tc;cin>>tc;
-    while(tc--){
-        ll n;cin>>n;
-        ll arr[n];
-        for (ll i = 0; i < n; i++)
-        {
-            cin>>arr[i];
-        }
-        ll sum=0;
-        ll cnt=0;
-        ll mx=INT_MIN;
-        for (ll i = 0; i < n; i++)
-        {
-            mx=max(mx,arr[i]);
-            sum+=arr[i];
-            if (sum/2==mx && sum%2==0)
-            {
-                cnt++;
-            }
-        }
-        cout<<cnt<<endl;
-    }
+	int tc;cin>>tc;
+	while(tc--){
+		ll n,m;
+		cin>>n>>m;
+		vector<string>grid(n);
+		for (ll i = 0; i < n; i++)
+		{
+			cin>>grid[i];
+		}
+		ll min_row=n-1;
+		ll mx_row=0;
+		ll min_col=m-1;
+		ll mx=0;
+		for (ll i = 0; i < n; i++)
+		{
+			for (ll j = 0; j < m; j++)
+			{
+				if (grid[i][j]=='#')
+				{
+					min_row=min(min_row,i);
+					mx_row=max(mx_row,i);
+					min_col=min(min_col,j);
+					mx=max(mx,j);
+				}
+			}
+		}
+		ll ok=(min_row+mx_row)/2;
+		ll why=(mx+min_col)/2;
+		cout<<ok+1<<" "<<why+1<<endl;
+	}
 
-    return 0;
+	return 0;
 }

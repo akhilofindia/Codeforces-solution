@@ -23,14 +23,14 @@ int main(){
         {
             cin>>arr[i];
         }
-        ll sum=0;
         ll cnt=0;
-        ll mx=INT_MIN;
+        map<ll,ll>mp;
+        ll sum=0;
         for (ll i = 0; i < n; i++)
         {
-            mx=max(mx,arr[i]);
             sum+=arr[i];
-            if (sum/2==mx && sum%2==0)
+            mp[arr[i]]++;
+            if (sum%2==0 && mp.count(sum/2))
             {
                 cnt++;
             }

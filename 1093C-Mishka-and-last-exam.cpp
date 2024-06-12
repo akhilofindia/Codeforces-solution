@@ -15,28 +15,35 @@ template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.fron
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
 int main(){
-    int tc;cin>>tc;
-    while(tc--){
-        ll n;cin>>n;
-        ll arr[n];
-        for (ll i = 0; i < n; i++)
-        {
-            cin>>arr[i];
-        }
-        ll sum=0;
-        ll cnt=0;
-        ll mx=INT_MIN;
-        for (ll i = 0; i < n; i++)
-        {
-            mx=max(mx,arr[i]);
-            sum+=arr[i];
-            if (sum/2==mx && sum%2==0)
-            {
-                cnt++;
-            }
-        }
-        cout<<cnt<<endl;
-    }
-
-    return 0;
+	ll n;cin>>n;
+	ll arr[n/2];
+	for (ll i = 0; i < n/2; i++)
+	{
+		cin>>arr[i];
+	}
+	vector<ll>final1,final2;
+	ll x=0,y=LLONG_MAX;
+	for (ll i = 0; i < n/2; i++)
+	{
+		ll a=x,b=arr[i]-a;
+		if (b>y)
+		{
+			b=y;
+			a=arr[i]-b;
+		}
+		final1.push_back(a);
+		final2.push_back(b);
+		x=a,y=b;
+	}
+	for (ll i = 0; i < final1.size(); i++)
+	{
+		cout<<final1[i]<<" ";
+	}
+	reverse(final2.begin(),final2.end());
+	for (ll i = 0; i < final2.size(); i++)
+	{
+		cout<<final2[i]<<" ";
+	}
+	cout<<endl;
+	return 0;
 }

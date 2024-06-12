@@ -15,28 +15,30 @@ template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.fron
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
 int main(){
-    int tc;cin>>tc;
-    while(tc--){
-        ll n;cin>>n;
-        ll arr[n];
-        for (ll i = 0; i < n; i++)
-        {
-            cin>>arr[i];
-        }
-        ll sum=0;
-        ll cnt=0;
-        ll mx=INT_MIN;
-        for (ll i = 0; i < n; i++)
-        {
-            mx=max(mx,arr[i]);
-            sum+=arr[i];
-            if (sum/2==mx && sum%2==0)
-            {
-                cnt++;
-            }
-        }
-        cout<<cnt<<endl;
-    }
+	int tc;cin>>tc;
+	vector<vector<int>> ans(64, vector<int>(200001, 0));
+	for (int i = 0; i <= 200000; i++)
+	{
+		for (int j = 0; j < 64; j++)
+		{
+			if (i&(1ll<<j))
+			{
+				ans[j][i]=ans[j][i-1]+1;
+			}else{
+				ans[j][i]=ans[j][i-1];
+			}
+		}
+	}
+	while(tc--){
+		ll l,r; cin>>l>>r;
+		int mx=0;
+		for (ll i = 0; i <= 63; i++)
+		{
+			mx=max(mx,ans[i][r]-ans[i][l-1]);
+		}
+		ll cnt=(r-l+1)-mx;
+		cout<<cnt<<endl;
+	}
 
-    return 0;
+	return 0;
 }

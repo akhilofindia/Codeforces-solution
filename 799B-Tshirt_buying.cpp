@@ -15,28 +15,45 @@ template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.fron
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
 int main(){
-    int tc;cin>>tc;
-    while(tc--){
-        ll n;cin>>n;
-        ll arr[n];
-        for (ll i = 0; i < n; i++)
-        {
-            cin>>arr[i];
-        }
-        ll sum=0;
-        ll cnt=0;
-        ll mx=INT_MIN;
-        for (ll i = 0; i < n; i++)
-        {
-            mx=max(mx,arr[i]);
-            sum+=arr[i];
-            if (sum/2==mx && sum%2==0)
-            {
-                cnt++;
-            }
-        }
-        cout<<cnt<<endl;
-    }
+	int n;cin>>n;
+	int x[n],a[n],b[n];
+	for (int i = 0; i < n; i++)
+	{
+		cin>>x[i];
+	}
+	for (int i = 0; i < n; i++)
+	{
+		cin>>a[i];
+	}
+	for (int i = 0; i < n; i++)
+	{
+		cin>>b[i];
+	}
+	map<int,set<int>>mp;
+	for (int i = 0; i < n; i++)
+	{
+		mp[a[i]].insert(x[i]);
+		mp[b[i]].insert(x[i]);
+	}
+	int m;cin>>m;
+	while(m--)
+	{
+		int q;cin>>q;
+		if (mp[q].size()!=0 && mp.find(q)!=mp.end())
+		{
+			auto x=mp[q].begin();
+			cout<<*x<<" ";
+			int price=*x;
+			for (auto it=mp.begin();it!=mp.end();it++)     //tshirt price erased
+			{
+				if (mp[it->first].count(price))
+				{
+					mp[it->first].erase(price);
+				}
+			}
+		}else cout<<-1<<" ";
+	}
+	cout<<endl;
 
-    return 0;
+	return 0;
 }

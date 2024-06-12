@@ -1,69 +1,39 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include <iostream>
+#define int long long
+const int MOD = 1e9+7;
 
-#define ll long long
-#define cy cout<<"YES"<<endl
-#define cn cout<<"NO"<<endl
-#define disp(a,x) for(auto x:a)cout<<x<<" ";
+int modpower(int x, int y, int mod) {
+    int res = 1;
+    x = x % mod;
+    if (x == 0) return 0;
+    while (y > 0) {
+        if (y & 1) res = (res * x) % mod;
+        y = y >> 1;
+        x = (x * x) % mod;
+    }
+    return res;
+}
 
-template<typename T1, typename T2>void displayMap(map<T1,T2>mp){for(auto it : mp){cout<<it.first<<"->"<<it.second<<endl;}cout<<endl;}
+int32_t main() {
+    int t;
+    std::cin >> t;
+    while (t--) {
+        int l, r, k;
+        std::cin >> l >> r >> k;
 
-int main(){
-	int tc;cin>>tc;
-	while(tc--){
-		int n,m; cin>>n>>m;
-		vector<int>va(n),vb(m);
-		for (int i = 0; i < n; i++)
-		{
-			cin>>va[i];
-		}
-		for (int i = 0; i < m; i++)
-		{
-			cin>>vb[i];
-		}
-		sort(va.begin(),va.end());
-		sort(vb.begin(),vb.end());
-		
-		int cnt=0;
-		int prea[n],preb[m];
-		prea[0]=va[0];
-		for (int i = 1; i < n; i++)
-		{
-			prea[i]=va[i]+prea[i-1];
-		}
-		preb[0]=vb[0];
-		for (int i = 1; i < m; i++)
-		{
-			preb[i]=vb[i]+preb[i-1];
-		}
-		int sufa[n],sufb[m];
-		sufa[n-1]=va[n-1];
-		for (int i = n-2; i >= 1; i--)
-		{
-			sufa[i]=sufa[i+1]+va[i];
-		}
-		sufb[m-1]=vb[m-1];
-		for (int i = m-2; i >= 1; i--)
-		{
-			sufb[i]=sufb[i+1]+vb[i];
-		}
-		int ans=-1;
-		int sum=0;
-		for (int i = 0; i <= n; i++)
-		{
-			if (i==0)
-			{
-				sum=sufb[m-n-i]-prea[n-1];
-			}else if (i==n)
-			{
-				sum=sufa[0]-preb[n-1];
-			}else{
-				sum=sufa[n-i]+sufb[m-n-i]-prea[n-i-1]+preb[i-1];
-			}
-			ans=max(ans,sum);
-		}
-		cout<<ans<<endl;
-	}
+        int valid_numbers = 0;
 
-	return 0;
+        if (k < 10) {
+            int av = 10 / k;
+            if (10 % k) {
+                av++;
+            }
+            int rt = modpower(av, r, MOD);
+            int lt = modpower(av, l, MOD);
+            valid_numbers = (rt - lt + MOD) % MOD;
+        }
+        
+        std::cout << valid_numbers << std::endl;
+    }
+    return 0;
 }
