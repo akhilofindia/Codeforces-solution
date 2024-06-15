@@ -17,24 +17,18 @@ template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.fron
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
 signed main(){
-	int n;cin>>n;
-	if (n<=5)
-	{
-		cout<<-1<<endl;
-	}else{
-		for (int i = 2; i <= 4; i++)
+	int n,m;cin>>n>>m;
+	int x=1,y=n;
+	while(m--){
+		int a,b;cin>>a>>b;
+		if (a>b)
 		{
-			cout<<1<<" "<<i<<endl;
+			swap(a,b);
 		}
-		for (int i = 5; i <= n; i++)
-		{
-			cout<<2<<" "<<i<<endl;
-		}
-	}	
-	for (int i = 2; i <= n; i++)
-	{
-		cout<<1<<" "<<i<<endl;
+		x=max(x,a);
+		y=min(y,b);
 	}
+	cout<<max(0ll,y-x)<<endl;
 
 	return 0;
 }

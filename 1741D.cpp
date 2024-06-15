@@ -17,23 +17,41 @@ template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.fron
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
 signed main(){
-	int n;cin>>n;
-	if (n<=5)
-	{
-		cout<<-1<<endl;
-	}else{
-		for (int i = 2; i <= 4; i++)
+	int tc;cin>>tc;
+	while(tc--){
+		int n;cin>>n;
+		vector<int>v(n);
+		for (int i = 0; i < n; i++)
 		{
-			cout<<1<<" "<<i<<endl;
+			cin>>v[i];
 		}
-		for (int i = 5; i <= n; i++)
+		int ok=1;
+		int cnt=0;
+		int flag=0;
+		while(v.size()>1){
+			vector<int>temp;
+			for (int i = 0; i < v.size()-1; i+=2)
+			{
+				if (abs(v[i]-v[i+1])!=ok)
+				{
+					flag=1;
+				}else{
+					if (v[i]>v[i+1])
+					{
+						cnt++;
+					}
+					temp.push_back(min(v[i],v[i+1]));
+				}
+			}
+			v=temp;
+			ok*=2;
+		}
+		if (flag)
 		{
-			cout<<2<<" "<<i<<endl;
+			cout<<-1<<endl;
+		}else{
+			cout<<cnt<<endl;
 		}
-	}	
-	for (int i = 2; i <= n; i++)
-	{
-		cout<<1<<" "<<i<<endl;
 	}
 
 	return 0;
