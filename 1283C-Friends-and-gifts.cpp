@@ -16,58 +16,47 @@ template<typename T>void displaySet(set<T>st){for(auto it:st){cout<<it<<" ";}cou
 template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.front()<<" ";q.pop();}cout<<endl;}
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
-void solve() {
-    ll n,k; cin>>n>>k;
-    vector<ll> v(n);   
-    if(k%2)
-    {
-        cout<<"NO"<<endl;return;
-    }
-    if(n==1)
-    {
-        if(k==0){
-            cout<<"YES"<<endl;
-            cout<<1<<endl;
-        }
-        else {
-            cout<<"NO"<<endl;
-        }
-    }
-    for(int i=0;i<n;i++)v[i]=i+1;
-    if(k==2)
-    {
-        cout<<"YES"<<endl;
-        cout<<v[1]<<" "<<v[0]<<" ";
-        for(int i=2;i<n;i++){
-            cout<<v[i]<<" ";
-        }
-        cout<<endl;
-        return;
-    }
-    for(int i=0;i<n;i++){
-        v[i]=i+1;
-    }
-    for(int i=0;i<n/2;i++)
-    {   
-        if(k>=2*(n-(2*i+1)))
-        {
-            k-=2*(n-(2*i+1));
-            swap(v[i], v[n-1-i]);
-        }
-    }    
-    if(k)
-    {
-        cout<<"NO"<<endl;return ;
-    }
-    cout<<"YES"<<endl;
-    for(auto i: v)cout<<i<<" ";
-        cout<<endl;
-    }
 signed main(){
-    int tc;cin>>tc;
-    while(tc--){
-        solve();
+    int n; cin >> n;
+    vector<int> v(n+1);
+    map<int,int>mp;
+    for (int i = 1; i <= n; i++)
+    {
+        cin>>v[i];
+        mp[v[i]]++;
     }
-
+    vector<int> temp;
+    for (int i = n; i > 0; i--){
+        if (!mp[i])
+        {
+            temp.push_back(i);
+        }
+    }
+    int j=0;
+    vector<pair<int,int>> ok;
+    for (int i = 1; i <= n; i++)
+    {
+        if (v[i] == 0)
+        {
+            ok.push_back({i,temp[j]});
+            j++;
+        }
+    }
+    for (int i = 0; i < ok.size()-1; i++)
+    {
+        if (ok[i].first==ok[i].second || ok[i+1].first==ok[i+1].second)
+        {
+            swap(ok[i].second,ok[i+1].second);
+        }
+    }
+    for (int i = 0; i < ok.size(); i++)
+    {
+        v[ok[i].first]=ok[i].second;
+    }
+    for (int i = 1; i <= n; i++)
+    {
+        cout<<v[i]<< " ";
+    }
+    ce;
     return 0;
 }

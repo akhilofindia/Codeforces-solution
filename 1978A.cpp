@@ -16,58 +16,24 @@ template<typename T>void displaySet(set<T>st){for(auto it:st){cout<<it<<" ";}cou
 template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.front()<<" ";q.pop();}cout<<endl;}
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
-void solve() {
-    ll n,k; cin>>n>>k;
-    vector<ll> v(n);   
-    if(k%2)
-    {
-        cout<<"NO"<<endl;return;
-    }
-    if(n==1)
-    {
-        if(k==0){
-            cout<<"YES"<<endl;
-            cout<<1<<endl;
-        }
-        else {
-            cout<<"NO"<<endl;
-        }
-    }
-    for(int i=0;i<n;i++)v[i]=i+1;
-    if(k==2)
-    {
-        cout<<"YES"<<endl;
-        cout<<v[1]<<" "<<v[0]<<" ";
-        for(int i=2;i<n;i++){
-            cout<<v[i]<<" ";
-        }
-        cout<<endl;
-        return;
-    }
-    for(int i=0;i<n;i++){
-        v[i]=i+1;
-    }
-    for(int i=0;i<n/2;i++)
-    {   
-        if(k>=2*(n-(2*i+1)))
-        {
-            k-=2*(n-(2*i+1));
-            swap(v[i], v[n-1-i]);
-        }
-    }    
-    if(k)
-    {
-        cout<<"NO"<<endl;return ;
-    }
-    cout<<"YES"<<endl;
-    for(auto i: v)cout<<i<<" ";
-        cout<<endl;
-    }
 signed main(){
-    int tc;cin>>tc;
-    while(tc--){
-        solve();
-    }
+	int tc;cin>>tc;
+	while(tc--){
+		int n;cin>>n;
+		int arr[n];
+		vector<int>v;
+		for (int i = 0; i < n; i++)
+		{
+			cin>>arr[i];
+			if (i!=n-1)
+			{
+				v.push_back(arr[i]);
+			}
+		}
+		sort(v.begin(),v.end());
+		int ans=*max_element(v.begin(),v.end());
+		cout<<arr[n-1]+ans<<endl;
+	}
 
-    return 0;
+	return 0;
 }

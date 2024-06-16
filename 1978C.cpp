@@ -16,57 +16,47 @@ template<typename T>void displaySet(set<T>st){for(auto it:st){cout<<it<<" ";}cou
 template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.front()<<" ";q.pop();}cout<<endl;}
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
-void solve() {
-    ll n,k; cin>>n>>k;
-    vector<ll> v(n);   
-    if(k%2)
-    {
-        cout<<"NO"<<endl;return;
-    }
-    if(n==1)
-    {
-        if(k==0){
-            cout<<"YES"<<endl;
-            cout<<1<<endl;
-        }
-        else {
-            cout<<"NO"<<endl;
-        }
-    }
-    for(int i=0;i<n;i++)v[i]=i+1;
-    if(k==2)
-    {
-        cout<<"YES"<<endl;
-        cout<<v[1]<<" "<<v[0]<<" ";
-        for(int i=2;i<n;i++){
-            cout<<v[i]<<" ";
-        }
-        cout<<endl;
-        return;
-    }
-    for(int i=0;i<n;i++){
-        v[i]=i+1;
-    }
-    for(int i=0;i<n/2;i++)
-    {   
-        if(k>=2*(n-(2*i+1)))
-        {
-            k-=2*(n-(2*i+1));
-            swap(v[i], v[n-1-i]);
-        }
-    }    
-    if(k)
-    {
-        cout<<"NO"<<endl;return ;
-    }
-    cout<<"YES"<<endl;
-    for(auto i: v)cout<<i<<" ";
-        cout<<endl;
-    }
 signed main(){
     int tc;cin>>tc;
     while(tc--){
-        solve();
+        int n,k;cin>>n>>k;
+        vector<int>v;
+        for (int i = 1; i <= n; i++)
+        {
+            v.push_back(i);
+        }
+        reverse(v.begin(),v.end());
+        int sum=0;
+        for (int i = 1; i <= n/2; i++)
+        {
+            sum+=abs(v[i-1]-i);
+        }
+        if (k>sum*2 || k%2!=0)
+        {
+            cout<<"NO"<<endl;
+        }else{
+            vector<int>p;
+            for (int i = 1; i <= n; i++)
+            {
+                p.push_back(i);
+            }
+            int j=n-1;
+            for (int i = 0; i < n; i++)
+            {
+                while(j && i<j && abs(p[i]-(j+1))+abs(p[j]-(i+1))>k){
+                    j--;
+                }
+                k-=abs(p[i]-(j+1))+abs(p[j]-(i+1));
+                swap(p[i],p[j]);
+                j--;
+                if (k<=0 || i>=j)
+                {
+                    break;
+                }
+            }
+            cy;
+            displayVec(p);
+        }
     }
 
     return 0;
