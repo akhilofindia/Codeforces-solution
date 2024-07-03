@@ -16,33 +16,34 @@ template<typename T>void displaySet(set<T>st){for(auto it:st){cout<<it<<" ";}cou
 template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.front()<<" ";q.pop();}cout<<endl;}
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
+int lcs(string &a,string &b,int i,int j,vector<vector<int>>&dp){
+	if (i==a.size() || j==b.size())
+	{
+		return 0;
+	}
+	if (dp[i][j]!=-1)
+	{
+		return dp[i][j];
+	}
+	if (a[i]==b[j])
+	{
+		dp[i][j]=1+lcs(a,b,i+1,j+1,dp);
+	}else{
+		dp[i][j]=max(lcs(a,b,i+1,j,dp),lcs(a,b,i,j+1,dp));
+	}
+	return dp[i][j];
+}
 signed main(){
 	int tc;cin>>tc;
 	while(tc--){
-		string s;cin>>s;
-		set<char>st;
-		int k=0;
-		for (int i = 0; i < s.size(); i++)
-		{
-			if (!st.count(s[i]))
-			{
-				st.insert(s[i]);
-				k++;
-			}else break;
-		}
-		int flag=0;
-		for (int i = k; i < s.size(); i++)
-		{
-			if (s[i]!=s[i-k])
-			{
-				flag=1;
-				break;
-			}
-		}
-		if (flag)
-		{
-			cn;
-		}else cy;
+		string s1,s2; cin>>s1>>s2;
+		int n=s1.size();
+		int m=s2.size();
+		vector<vector<int>>dp(n,vector<int>(m,-1));
+		int overlap=lcs(s1,s2,0,0,dp);
+		cout<<overlap<<endl;
+		int mn=n+m-overlap;
+		cout<<mn<<endl;
 	}
 
 	return 0;

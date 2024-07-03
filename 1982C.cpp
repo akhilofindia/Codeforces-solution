@@ -17,33 +17,33 @@ template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.fron
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
 signed main(){
-	int tc;cin>>tc;
-	while(tc--){
-		string s;cin>>s;
-		set<char>st;
-		int k=0;
-		for (int i = 0; i < s.size(); i++)
-		{
-			if (!st.count(s[i]))
-			{
-				st.insert(s[i]);
-				k++;
-			}else break;
-		}
-		int flag=0;
-		for (int i = k; i < s.size(); i++)
-		{
-			if (s[i]!=s[i-k])
-			{
-				flag=1;
-				break;
-			}
-		}
-		if (flag)
-		{
-			cn;
-		}else cy;
-	}
+    int tc;cin>>tc;
+    while(tc--){
+        int n,l,r;cin>>n>>l>>r;
+        int arr[n];
+        for (int i = 0; i < n; i++)
+        {
+            cin>>arr[i];
+        }
+        int sum=0;
+        int cnt=0;
+        int ans=0;
+        for (int i = 0; i < n; i++)
+        {
+            sum+=arr[i];
+            while(sum>r && cnt<=i){
+                sum-=arr[cnt];
+                cnt++;
+            }
+            if (sum>=l && sum<=r)
+            {
+                ans++;
+                cnt=i+1;
+                sum=0;
+            }
+        }
+        cout<<ans<<endl;
+    }
 
-	return 0;
+    return 0;
 }

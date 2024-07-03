@@ -19,30 +19,32 @@ template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout
 signed main(){
 	int tc;cin>>tc;
 	while(tc--){
-		string s;cin>>s;
-		set<char>st;
-		int k=0;
-		for (int i = 0; i < s.size(); i++)
-		{
-			if (!st.count(s[i]))
-			{
-				st.insert(s[i]);
-				k++;
-			}else break;
-		}
+		int a,b;
+		cin>>a>>b;
+		int c,d;cin>>c>>d;
+		int x=c-a;
+		int y=d-b;
 		int flag=0;
-		for (int i = k; i < s.size(); i++)
+		if (a==c && b==d)
 		{
-			if (s[i]!=s[i-k])
+			flag=1;
+		}else if (a>b)
+		{
+			if (c>d)
 			{
 				flag=1;
-				break;
+			}
+		}else if (b>a)
+		{
+			if (d>c)
+			{
+				flag=1;
 			}
 		}
-		if (flag)
+		if (flag==1)
 		{
-			cn;
-		}else cy;
+			cy;
+		}else cn;
 	}
 
 	return 0;

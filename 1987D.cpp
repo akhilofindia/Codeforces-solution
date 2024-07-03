@@ -19,30 +19,20 @@ template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout
 signed main(){
 	int tc;cin>>tc;
 	while(tc--){
-		string s;cin>>s;
-		set<char>st;
-		int k=0;
-		for (int i = 0; i < s.size(); i++)
+		int n;cin>>n;
+		int arr[n];
+		map<int,int>mp;
+		for (int i = 0; i < n; i++)
 		{
-			if (!st.count(s[i]))
-			{
-				st.insert(s[i]);
-				k++;
-			}else break;
+			cin>>arr[i];
+			mp[arr[i]]++;
 		}
-		int flag=0;
-		for (int i = k; i < s.size(); i++)
-		{
-			if (s[i]!=s[i-k])
-			{
-				flag=1;
-				break;
-			}
-		}
-		if (flag)
-		{
-			cn;
-		}else cy;
+		sort(arr,arr+n);
+		// for (int i = 0; i < n; i++)
+		// {
+		// 	cout<<arr[i]<<" ";
+		// }
+		displayMap(mp);
 	}
 
 	return 0;

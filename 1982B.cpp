@@ -19,30 +19,29 @@ template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout
 signed main(){
 	int tc;cin>>tc;
 	while(tc--){
-		string s;cin>>s;
-		set<char>st;
-		int k=0;
-		for (int i = 0; i < s.size(); i++)
-		{
-			if (!st.count(s[i]))
-			{
-				st.insert(s[i]);
-				k++;
-			}else break;
-		}
+		int x,y,k; cin>>x>>y>>k;
 		int flag=0;
-		for (int i = k; i < s.size(); i++)
-		{
-			if (s[i]!=s[i-k])
+		while(x!=1){
+			int ans=((x/y)+1)*y-x;
+			if (k>=ans)
 			{
+				k-=ans;
+				x+=ans;
+				while(x%y==0){
+					x/=y;
+				}	
+			}else{
 				flag=1;
 				break;
 			}
 		}
-		if (flag)
+		if (flag==1)
 		{
-			cn;
-		}else cy;
+			cout<<x+k<<endl;
+		}else{
+			int num=1+(k%(y-1));
+			cout<<num<<endl;
+		}
 	}
 
 	return 0;

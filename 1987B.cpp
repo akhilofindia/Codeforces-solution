@@ -21,17 +21,52 @@ signed main(){
     while(tc--){
         int n;cin>>n;
         int arr[n];
-        map<int,int>mp;
         for (int i = 0; i < n; i++)
         {
             cin>>arr[i];
-            mp[arr[i]]++;
         }
-        //agar i and y ke beech m x elements h nd total y<x then wo element 
-        //bob khajayega
-        int ans=0;
-        int cnt=0;
-    
+        vector<int>need;
+        int mx=arr[0];
+        int flag=0;
+        for (int i = 0; i < n-1; i++)
+        {
+            if (arr[i]>arr[i+1])
+            {
+                flag=1;
+                break;
+            }
+        }
+        if (flag==0 || n==1)
+        {
+            cout<<0<<endl;
+        }else{
+            for (int i = 1; i < n; i++)
+            {
+                if (mx>arr[i])
+                { 
+                    need.push_back(mx-arr[i]);
+                }else{
+                    mx=arr[i];
+                }
+            }
+        // displayVec(need);
+            sort(need.begin(),need.end());
+        // displayVec(need);
+        // displayVec(need);
+            for (int i = need.size()-1; i >=1; i--)
+            {
+                need[i]=need[i]-need[i-1];
+            }
+        // sort(need.begin(),need.end());
+
+        // displayVec(need);
+            int ans=0;
+            for (int i = 0; i < need.size(); i++)
+            {
+                ans+=(1+need.size()-i)*need[i];
+            }
+            cout<<ans<<endl;
+        }
     }
 
     return 0;
