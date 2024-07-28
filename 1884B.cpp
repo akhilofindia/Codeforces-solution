@@ -1,34 +1,64 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main(){
+#define ll long long
+#define cy cout<<"YES"<<endl
+#define cn cout<<"NO"<<endl
+#define disp(a,x) for(auto x:a)cout<<x<<" ";
+#define ce cout<<endl;
+#define int long long
+
+template<typename T>void displayVec(vector<T> a){for(int i=0;i<a.size();i++) cout<<a[i]<<" ";cout<<endl;}
+template<typename T>void displayArr(T a[], int n){for(int i=0;i<n;i++) cout<<a[i]<<" ";cout<<endl;}
+template<typename T>void displayAdj(vector<T> adj[], int n){for(int i=0;i<=n;i++){cout<<i<<"->";displayVec(adj[i]);}}
+template<typename T1, typename T2>void displayMap(map<T1,T2>mp){for(auto it : mp){cout<<it.first<<"->"<<it.second<<endl;}cout<<endl;}
+template<typename T>void displaySet(set<T>st){for(auto it:st){cout<<it<<" ";}cout<<endl;}
+template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.front()<<" ";q.pop();}cout<<endl;}
+template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
+
+signed main(){
 	int tc;cin>>tc;
 	while(tc--){
 		int n;cin>>n;
-		int a,b,c,d;
-		d=n%10; 
-		n/=10; 
-		c=n%10;
-		n/=10;
-		b=n%10;
-		n/=10;
-		a=n%10;
-		int cnt=4;
-		if (a==0)
+		string s;cin>>s;
+		string r=string(s.rbegin(),s.rend());
+		vector<int>v;
+		int cnt=0;
+		for (int i = 0; i < n; i++)
 		{
-			a=10;
-		}if (b==0)
-		{
-			b=10;
-		}if (c==0)
-		{
-			c=10;
-		}if (d==0)
-		{
-			d=10;
+			if (r[i]=='1')
+			{
+				cnt++;
+			}
+			if (r[i]=='0' && cnt)
+			{
+				v.push_back(i);
+			}
 		}
-		cnt+=abs(a-1)+abs(b-a)+abs(c-b)+abs(d-c);
-		cout<<cnt<<endl;
+		int ans=0,l=0,pre=0,k=0;
+		for (int i = 0; i < n; i++)
+		{
+			if (r[i]=='1')
+			{
+				k++;
+			}
+			if (k==0)
+			{
+				cout<<0<<" ";
+				ans++;
+			}else{
+				if (l<v.size())
+				{
+					cout<<v[l]-ans+pre<<" ";
+					pre+=v[l]-ans;
+					l++;
+				}else{
+					cout<<-1<<" ";
+				}
+				ans++;
+			}
+		}
+		cout<<endl;
 	}
 
 	return 0;

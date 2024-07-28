@@ -17,38 +17,42 @@ template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.fron
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
 signed main(){
-	int tc;cin>>tc;
-	while(tc--){
-		int n;cin>>n;
-		vector<int>v(n);
-		map<int,int>mp;
-		for (int i = 0; i < n; i++)
-		{
-			cin>>v[i];
-			mp[v[i]]++;
-		}
-		int cnt=0;
-		int ans=n+1;
-		int flag=0;
-		for (auto i: mp)
-		{
-			if (cnt!=i.first)
-			{
-				ans=min(ans,cnt);
-			}
-			if (flag && i.second==1)
-			{
-				ans=min(ans,cnt);
-			}
-			if (i.second==1)
-			{
-				flag=1;
-			}
-			cnt++;
-		}
-		ans=min(ans,cnt);
-		cout<<ans<<endl;
-	}
+    int tc;cin>>tc;
+    while(tc--){
+        int n,x;cin>>n>>x;
+        vector<int>ok(n);
+        for (int i = 0; i < n; i++)
+        {
+            cin>>ok[i];
+        }
+        vector<int>pre(n+1,0);
+        for (int i = 1; i <= n; i++)
+        {
+            pre[i]=ok[i-1]+pre[i-1];
+        }
+        vector<int>dp(n+1,0);
+        for (int i = n-1; i>=0; i--)
+        {
+            auto it=upper_bound(pre.begin(),pre.end(),x+pre[i]);
+            int ind=it-pre.begin();
+            if (ind==n+1)
+            {
+                dp[i]+=(n-i);  //can make with all
+            }else if (pre[ind]==x+pre[i])
+            {
+                dp[i]+=(dp[ind+1]+(ind-i)); //pehle wle and bad wle
+            }else{
+                dp[i]+=(dp[ind]+(ind-i-1)); //all pehle wle
+            }
+        }
+        int final=0;
+        for (int i = 0; i < n; i++)
+        {
+            final+=dp[i];
+        }
+        cout<<final<<endl;
 
-	return 0;
+    }
+
+    return 0;
 }

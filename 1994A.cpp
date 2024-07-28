@@ -16,48 +16,49 @@ template<typename T>void displaySet(set<T>st){for(auto it:st){cout<<it<<" ";}cou
 template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.front()<<" ";q.pop();}cout<<endl;}
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
-signed main(){
-    int tc;cin>>tc;
-    while(tc--){
-        int n,m;
-        cin>>n>>m;  
-        vector<int>v1(n),v2(n);
+signed main() {
+    int tc;
+    cin >> tc;
+    while (tc--) {
+        int n,m; cin>>n>>m;
+        int arr[n][m];
         for (int i = 0; i < n; i++) 
         {
-            cin>>v1[i];
-        }
-        for (int i = 0; i < n; i++) 
-        {
-            cin>>v2[i];
-        }
-        map<int,int>mp;
-        for (int i = 0; i < n; i++) 
-        {
-            mp[v1[i]]=v2[i];
-        }   
-        int mx = 0;
-        for(auto it:mp) {
-            int nex=0;
-            if (mp.count(it.first+1)) 
+            for (int j = 0; j < m; j++) 
             {
-                nex=mp[it.first+1];
+                cin >> arr[i][j];
             }
-            int take=min(it.second,m/it.first);
-            int left=m-take*it.first;
-            int next=0;
-            if (mp.count(it.first+1)) {
-                next=min(nex,left/(it.first + 1));
-                left-=next*(it.first+1);
-            }
-            int ok=min(min(take,left),nex-next);
-            mx=max(mx,take*it.first+next*(it.first+1));
-            next+=ok;
-            take-=ok;
-            mx=max(mx,next*(it.first+1)+take*it.first);
         }
-        cout<<mx<<endl;
+        
+        if (n == 1 && m == 1) 
+        {
+            cout << -1 << endl;
+        } else {
+            int b[n][m];
+            if (m == 1) {
+                for (int i = 0; i < n; i++) 
+                {
+                    b[i][0] = arr[(i+1)%n][0];
+                }
+            } else {
+                for (int i = 0; i < n; i++) 
+                {
+                    for (int j = 0; j < m; j++) 
+                    {
+                        b[i][j] = arr[i][(j+1) % m];
+                    }
+                }
+            }
+            
+            for (int i = 0; i < n; i++) 
+            {
+                for (int j = 0; j < m; j++) 
+                {
+                    cout << b[i][j] << " ";
+                }
+                cout << endl;
+            }
+        }
     }
     return 0;
 }
-
-

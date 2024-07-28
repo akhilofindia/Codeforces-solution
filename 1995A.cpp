@@ -16,39 +16,27 @@ template<typename T>void displaySet(set<T>st){for(auto it:st){cout<<it<<" ";}cou
 template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.front()<<" ";q.pop();}cout<<endl;}
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
-signed main(){
-	int tc;cin>>tc;
-	while(tc--){
-		int n;cin>>n;
-		vector<int>v(n);
-		map<int,int>mp;
-		for (int i = 0; i < n; i++)
-		{
-			cin>>v[i];
-			mp[v[i]]++;
-		}
-		int cnt=0;
-		int ans=n+1;
-		int flag=0;
-		for (auto i: mp)
-		{
-			if (cnt!=i.first)
-			{
-				ans=min(ans,cnt);
-			}
-			if (flag && i.second==1)
-			{
-				ans=min(ans,cnt);
-			}
-			if (i.second==1)
-			{
-				flag=1;
-			}
-			cnt++;
-		}
-		ans=min(ans,cnt);
-		cout<<ans<<endl;
-	}
+signed main() {
+    int tc; cin >> tc;
+    while (tc--) {
+        int n, k;  cin >> n >> k;
+        int ans = 0;
+        if (k>0) {
+            k = k - n;
+            ans += 1;
+        }
+        n = n - 1;
+        while (k > 0) {
+            k = k - n;
+            ans += 1;
+            if (k > 0) {
+                ans += 1;
+                k = k - n;
+            }
+            n = n - 1;
+        }
+        cout << ans << endl;
+    }
 
-	return 0;
+    return 0;
 }

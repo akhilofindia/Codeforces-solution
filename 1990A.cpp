@@ -20,34 +20,35 @@ signed main(){
 	int tc;cin>>tc;
 	while(tc--){
 		int n;cin>>n;
-		vector<int>v(n);
+		vector<int>arr(n);
 		map<int,int>mp;
 		for (int i = 0; i < n; i++)
 		{
-			cin>>v[i];
-			mp[v[i]]++;
+			cin>>arr[i];
+			mp[arr[i]]++;
 		}
-		int cnt=0;
-		int ans=n+1;
-		int flag=0;
-		for (auto i: mp)
+		int mx=*max_element(arr.begin(),arr.end());
+		if (mp[mx]%2)
 		{
-			if (cnt!=i.first)
+			cy;
+		}else{
+			int flag=0;
+			for (auto it:mp)
 			{
-				ans=min(ans,cnt);
+				if (it.second%2==1)
+				{
+					flag=1;
+					break;
+				}
 			}
-			if (flag && i.second==1)
+			if (flag)
 			{
-				ans=min(ans,cnt);
+				/* code */
+				cy;
+			}else{
+				cn;
 			}
-			if (i.second==1)
-			{
-				flag=1;
-			}
-			cnt++;
 		}
-		ans=min(ans,cnt);
-		cout<<ans<<endl;
 	}
 
 	return 0;

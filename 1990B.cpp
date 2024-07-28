@@ -19,35 +19,31 @@ template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout
 signed main(){
 	int tc;cin>>tc;
 	while(tc--){
-		int n;cin>>n;
-		vector<int>v(n);
-		map<int,int>mp;
-		for (int i = 0; i < n; i++)
+		int n,x,y;
+		cin>>n>>x>>y;
+		vector<int>arr(n+1);
+		for (int i = y; i <=x; i++)
 		{
-			cin>>v[i];
-			mp[v[i]]++;
+			arr[i]=1;
 		}
-		int cnt=0;
-		int ans=n+1;
-		int flag=0;
-		for (auto i: mp)
+		int ok=-1;
+		y--;
+		for (int i = y; i >=1; i--)
 		{
-			if (cnt!=i.first)
-			{
-				ans=min(ans,cnt);
-			}
-			if (flag && i.second==1)
-			{
-				ans=min(ans,cnt);
-			}
-			if (i.second==1)
-			{
-				flag=1;
-			}
-			cnt++;
+			arr[i]=ok;
+			ok*=(-1);
 		}
-		ans=min(ans,cnt);
-		cout<<ans<<endl;
+		ok=-1;
+		for (int i = x+1; i <=n; i++)
+		{
+			arr[i]=ok;
+			ok*=(-1);
+		}
+		for (int i = 1; i <= n; i++)
+		{
+			cout<<arr[i]<<" ";
+		}
+		cout<<endl;
 	}
 
 	return 0;

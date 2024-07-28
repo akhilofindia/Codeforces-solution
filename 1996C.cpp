@@ -19,35 +19,39 @@ template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout
 signed main(){
 	int tc;cin>>tc;
 	while(tc--){
-		int n;cin>>n;
-		vector<int>v(n);
-		map<int,int>mp;
+		int n,q; cin>>n>>q;
+		string s1,s2;cin>>s1>>s2;
+		vector<vector<int>>prea(n+1,vector<int>(26,0)),preb(n+1,vector<int>(26,0));
 		for (int i = 0; i < n; i++)
 		{
-			cin>>v[i];
-			mp[v[i]]++;
+			for (int j = 0; j < 26; j++)
+			{
+				prea[i+1][j]=prea[i][j];
+				preb[i+1][j]=preb[i][j];
+			}
+			prea[i+1][s1[i]-'a']++;
+			preb[i+1][s2[i]-'a']++;
 		}
-		int cnt=0;
-		int ans=n+1;
-		int flag=0;
-		for (auto i: mp)
-		{
-			if (cnt!=i.first)
+		while(q--){
+			int l,r;cin>>l>>r;
+			l--,r--;
+			vector<int>mpa(26,0),mpb(26,0);
+			for (int i = 0; i < 26; i++)
 			{
-				ans=min(ans,cnt);
+				mpa[i]=prea[r+1][i]-prea[l][i];
+				mpb[i]=preb[r+1][i]-preb[l][i];
 			}
-			if (flag && i.second==1)
+			int ans=0;
+			for (int i = 0; i < 26; i++)
 			{
-				ans=min(ans,cnt);
+				if (mpb[i]>mpa[i])
+				{
+					ans+=(mpb[i]-mpa[i]);
+				}
 			}
-			if (i.second==1)
-			{
-				flag=1;
-			}
-			cnt++;
+			cout<<ans<<endl;
 		}
-		ans=min(ans,cnt);
-		cout<<ans<<endl;
+
 	}
 
 	return 0;

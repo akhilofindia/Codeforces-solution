@@ -20,34 +20,41 @@ signed main(){
 	int tc;cin>>tc;
 	while(tc--){
 		int n;cin>>n;
-		vector<int>v(n);
-		map<int,int>mp;
+		string s1,s2;cin>>s1>>s2;
+		int zero=0,one=0;
+		int flag=0;
 		for (int i = 0; i < n; i++)
 		{
-			cin>>v[i];
-			mp[v[i]]++;
+			if (s1[i]=='0')
+			{
+				zero=1;
+			}else{
+				one=1;
+			}
+			if (s1[i]!=s2[i])
+			{
+				if (s1[i]==1)      
+				{
+					if (!zero)
+					{
+						flag=1; 
+						break;
+					}
+				}else{
+					if (!one)
+					{
+						flag=1;
+						break;
+					}
+				}
+			}
 		}
-		int cnt=0;
-		int ans=n+1;
-		int flag=0;
-		for (auto i: mp)
+		if (flag)
 		{
-			if (cnt!=i.first)
-			{
-				ans=min(ans,cnt);
-			}
-			if (flag && i.second==1)
-			{
-				ans=min(ans,cnt);
-			}
-			if (i.second==1)
-			{
-				flag=1;
-			}
-			cnt++;
+			cn;
+		}else{
+			cy;
 		}
-		ans=min(ans,cnt);
-		cout<<ans<<endl;
 	}
 
 	return 0;
