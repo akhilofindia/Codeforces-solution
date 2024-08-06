@@ -17,24 +17,46 @@ template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.fron
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
 signed main(){
-    int tc;cin>>tc;
+    int tc; cin >> tc;
     while(tc--){
-        int n;cin>>n;
-        vector<int>v(n+1);
-        for (int i = 1; i <= n; ++i)
+        string s; cin>>s;
+        int flag=0;
+        for (int i = 0; i < s.size() - 1; i++)
         {
-            cin>>v[i];
+            if (s[i]==s[i+1]){
+                flag = 1; 
+                break;
+            }
         }
-        vector<vector<int>>ok(n+1);
-        for (int i = 2; i <= n; ++i)
-        {
-            int hi;cin>>hi;
-            ok[hi].push_back(i);
+        string s2;
+        if (!flag){
+            for (char c = 'a'; c <= 'z'; c++)
+            {  
+                if (c != s[0]){
+                    s2 = c;
+                    break;
+                }
+            }
+            s2 += s;
+            cout << s2 << endl;
+        }else{
+            int flag1 = 0;
+            for (int i = 0; i < s.size() - 1; i++){
+                s2 += s[i];
+                if (s[i] == s[i + 1] && flag1 == 0){
+                    for (char c = 'a'; c <= 'z'; c++)
+                    { 
+                        if (c != s[i]){
+                            s2 += c;
+                            flag1 = 1;
+                            break;
+                        }
+                    }
+                }
+            }
+            s2 += s[s.size()-1];
+            cout<<s2<<endl;
         }
-        vector<int>wow(n+1,0);
-        int mx=LLONG_MAX;
-        dfs(1,tree,v,wow,mx);
-        cout<<mx<<endl;
     }
 
     return 0;

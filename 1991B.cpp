@@ -17,25 +17,41 @@ template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.fron
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
 signed main(){
-    int tc;cin>>tc;
-    while(tc--){
-        int n;cin>>n;
-        vector<int>v(n+1);
-        for (int i = 1; i <= n; ++i)
-        {
-            cin>>v[i];
-        }
-        vector<vector<int>>ok(n+1);
-        for (int i = 2; i <= n; ++i)
-        {
-            int hi;cin>>hi;
-            ok[hi].push_back(i);
-        }
-        vector<int>wow(n+1,0);
-        int mx=LLONG_MAX;
-        dfs(1,tree,v,wow,mx);
-        cout<<mx<<endl;
-    }
+	int tc;cin>>tc;
+	while(tc--){
+		int n;cin>>n;
+		int arr[n-1];
+		for (int i = 0; i < n-1; i++)
+		{
+			cin>>arr[i];
+		}
+		vector<int>ans(n);
+		int flag=0;
+		for (int i = 0; i < n-1; i++)
+		{
+			ans[i]|=arr[i];
+			ans[i+1]|=arr[i];
+		}
+		for (int i = 0; i < n-1; i++)
+		{
+			if (arr[i]!=(ans[i]&ans[i+1]))
+			{
+				flag=1;
+				break;
+			}
+		}
+		if (flag)
+		{
+			cout<<-1<<endl;
+		}else{
+			for (int i = 0; i < n; i++)
+			{
+				cout<<ans[i]<<" ";
+			}
+			cout<<endl;
+		}
 
-    return 0;
+	}
+
+	return 0;
 }

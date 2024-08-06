@@ -17,25 +17,43 @@ template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.fron
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
 signed main(){
-    int tc;cin>>tc;
-    while(tc--){
-        int n;cin>>n;
-        vector<int>v(n+1);
-        for (int i = 1; i <= n; ++i)
-        {
-            cin>>v[i];
-        }
-        vector<vector<int>>ok(n+1);
-        for (int i = 2; i <= n; ++i)
-        {
-            int hi;cin>>hi;
-            ok[hi].push_back(i);
-        }
-        vector<int>wow(n+1,0);
-        int mx=LLONG_MAX;
-        dfs(1,tree,v,wow,mx);
-        cout<<mx<<endl;
-    }
+	int tc;cin>>tc;
+	while(tc--){
+		int n;cin>>n;
+		vector<int>arr(n);
+		for (int i = 0; i < n; i++)
+		{
+			cin>>arr[i];
+		}
+		int flag=0;
+		for (int i = 1; i < n; i++)
+		{
+			if ((arr[i]%2)!=(arr[0]%2))
+			{
+				flag=1;
+				break;
+			}
+		}
+		if (flag)
+		{
+			cout<<-1<<endl;
+		}else{
+			cout<<39<<endl;
+			for (int i = 0; i < 39; i++)
+			{
+				int mx=*max_element(arr.begin(),arr.end());
+				int mn=*min_element(arr.begin(),arr.end());
+				int mid=(mx-mn)/2+mn;
+				cout<<mid<<" ";
+				for (int i = 0; i < n; ++i)
+				{
+					arr[i]=abs(mid-arr[i]);
+				}
+			}
+			cout<<endl;
+		}
 
-    return 0;
+	}
+
+	return 0;
 }

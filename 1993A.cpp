@@ -17,25 +17,26 @@ template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.fron
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
 signed main(){
-    int tc;cin>>tc;
-    while(tc--){
-        int n;cin>>n;
-        vector<int>v(n+1);
-        for (int i = 1; i <= n; ++i)
-        {
-            cin>>v[i];
-        }
-        vector<vector<int>>ok(n+1);
-        for (int i = 2; i <= n; ++i)
-        {
-            int hi;cin>>hi;
-            ok[hi].push_back(i);
-        }
-        vector<int>wow(n+1,0);
-        int mx=LLONG_MAX;
-        dfs(1,tree,v,wow,mx);
-        cout<<mx<<endl;
-    }
+	int tc;cin>>tc;
+	while(tc--){
+		int n;cin>>n;
+		string s;cin>>s;
+		map<char,int>mp;
+		for (int i = 0; i < 4*n; i++)
+		{
+			if (s[i]!='?')
+			{
+				mp[s[i]]++;
+			}
+		}
+		int cnt=0;
+		for (auto i: mp)
+		{
+			// cout<<i.second<<" ";
+			cnt+=min(i.second,n);
+		}
+		cout<<cnt<<endl;
+	}
 
-    return 0;
+	return 0;
 }
