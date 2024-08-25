@@ -16,26 +16,63 @@ template<typename T>void displaySet(set<T>st){for(auto it:st){cout<<it<<" ";}cou
 template<typename T>void displayQueue(queue<T> q){while(!q.empty()){cout<<q.front()<<" ";q.pop();}cout<<endl;}
 template<typename T>void displayPQ(priority_queue<T> pq){while(!pq.empty()){cout<<pq.top()<<" ";pq.pop();}cout<<endl;}
 
-signed main(){
-    int tc;cin>>tc;
-    while(tc--){
-        int n;cin>>n;
-        vector<int>v(n+1);
-        for (int i = 1; i <= n; ++i)
-        {
-            cin>>v[i];
+const int kMaxN = 1e6 + 10;
+struct Node {
+    int prev, next, pairIndex;
+} a[kMaxN];
+
+int n, m, p, p2;
+stack<int>st;
+string s,t;
+signed main() {
+    cin>>n>>m>>p>>s>>t;
+    p--; 
+    for (int i = 0; i < s.size(); i++) {
+        a[i].prev = i - 1;
+        a[i].next = i + 1;
+        if (s[i] == '(') {
+            st.push(i); 
+        } else {
+            int match = st.top();
+            st.pop();
+            a[i].pairIndex = match;
+            a[match].pairIndex = i;
         }
-        vector<vector<int>>ok(n+1);
-        for (int i = 2; i <= n; ++i)
-        {
-            int hi;cin>>hi;
-            ok[hi].push_back(i);
-        }
-        vector<int>wow(n+1,0);
-        int mx=LLONG_MAX;
-        dfs(1,tree,v,wow,mx);
-        cout<<mx<<endl;
     }
+    for (int i = 0; i < t.size(); i++) 
+    {
+        if (t[i] == 'L') 
+        {
+            p=a[p].prev;
+        }else if (t[i]=='R'){
+            p=a[p].next;
+        }else if (t[i]=='D'){
+            p=min(p,a[p].pairIndex);
+            p2=a[p].pairIndex;
+            if (a[p].prev != -1) 
+            {
+                a[a[p].prev].next =a[p2].next;
+            }
+            if (a[p2].next != n) 
+            {
+                a[a[p2].next].prev = a[p].prev;
+            }
+            if (a[p].prev != -1 && a[a[p].prev].next==n) {
+                p=a[p].prev;
+            } else{
+                p=a[p2].next;
+            }
+        }
+    }
+    while (p!=0 && a[p].prev!=-1) 
+    {
+        p=a[p].prev;
+    }
+    while (p<n) {
+        cout<<s[p];
+        p=a[p].next;
+    }
+    cout<<endl;
 
     return 0;
 }
